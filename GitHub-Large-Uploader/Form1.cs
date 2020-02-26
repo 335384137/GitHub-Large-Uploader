@@ -36,7 +36,7 @@ namespace GitHub_Large_Uploader
             textBox2.ReadOnly = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             if (Convert.ToBoolean(textBox1.Text == "") != Convert.ToBoolean(textBox2.Text == ""))
             {
@@ -46,10 +46,16 @@ namespace GitHub_Large_Uploader
             {
                 string GitDirectory = textBox2.Text;
                 DirectoryInfo Source = new DirectoryInfo(textBox1.Text);
+                var Files = 0;
                 foreach (var file in Source.GetFiles())
                 {
                     file.MoveTo(GitDirectory + "\\" + file.Name);
                     RunCommand("cd \"" + GitDirectory + "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                    Files++;
+                    if (Files < progressBar1.Maximum)
+                    {
+                        progressBar1.Value = Files;
+                    }
                 }
             }
         }
@@ -63,6 +69,14 @@ namespace GitHub_Large_Uploader
             if (Directory.Exists(dewBrowserDialog.SelectedPath))
             {
                 textBox1.Text = dewBrowserDialog.SelectedPath;
+                DirectoryInfo d = new DirectoryInfo(dewBrowserDialog.SelectedPath);
+                var Files = 0;
+                foreach (var file in d.GetFiles())
+                {
+                    Files++;
+                }
+
+                progressBar1.Maximum = Files;
             }
             else
             {
