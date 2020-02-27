@@ -60,7 +60,7 @@ namespace GitHub_Large_Uploader
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Please select the source directory for the files that you want to upload");
             FolderBrowserDialog dewBrowserDialog = new FolderBrowserDialog();
