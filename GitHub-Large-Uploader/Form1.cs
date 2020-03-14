@@ -64,7 +64,6 @@ namespace GitHub_Large_Uploader
         {
             MessageBox.Show("Please select the source directory for the files that you want to upload");
             FolderBrowserDialog dewBrowserDialog = new FolderBrowserDialog();
-            dewBrowserDialog.RootFolder = Environment.SpecialFolder.UserProfile;
             dewBrowserDialog.ShowDialog();
             if (Directory.Exists(dewBrowserDialog.SelectedPath))
             {
@@ -87,7 +86,6 @@ namespace GitHub_Large_Uploader
             }
             MessageBox.Show("Now select your GitHub Directory");
             FolderBrowserDialog dewDialog = new FolderBrowserDialog();
-            dewDialog.RootFolder = Environment.SpecialFolder.UserProfile;
             dewDialog.ShowDialog();
             if (Directory.Exists(dewDialog.SelectedPath))
             {
