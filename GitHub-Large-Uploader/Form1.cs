@@ -50,7 +50,7 @@ namespace GitHub_Large_Uploader
                 foreach (var file in Source.GetFiles())
                 {
                     file.MoveTo(GitDirectory + "\\" + file.Name);
-                    RunCommand("cd \"" + GitDirectory + "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                    RunCommand("cd /d \"" + GitDirectory + "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
                     Files++;
                     if (Files < progressBar1.Maximum)
                     {
