@@ -6,9 +6,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GitHub_Large_Uploader.Properties;
 
 namespace GitHub_Large_Uploader
 {
@@ -58,6 +60,8 @@ namespace GitHub_Large_Uploader
                     }
                 }
             }
+            SoundPlayer dew = new SoundPlayer(Resources.Finished_Upload);
+            dew.Play();
         }
 
         private async void button2_Click(object sender, EventArgs e)
