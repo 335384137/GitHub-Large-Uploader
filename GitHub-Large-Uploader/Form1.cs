@@ -207,9 +207,16 @@ namespace GitHub_Large_Uploader
                 for (int i = 30; i > 0; i = i - 1)
                 {
                     StatusLabel.Text = "Shutting Down In: " + i + " Seconds";
+                    Random h = new Random();
+                    int j = h.Next(0, 1);
+                    
+                        SystemSounds.Hand.Play();
+                    
                     await Task.Delay(1000);
                 }
                 StatusLabel.Text = "Shutting Down";
+                SoundPlayer dewd = new SoundPlayer(Resources.ShuttingDown);
+                dewd.PlaySync();
                 await RunCommandHidden("shutdown /s /f /t 00");
             }
         }
