@@ -134,7 +134,7 @@ namespace GitHub_Large_Uploader
                             {
                                 if (EstimatedMinutesD < 60)
                                 {
-                                    return (EstimatedMinutesD / 60).ToString() + " Hour(s)";
+                                    return (EstimatedMinutesD / 60).ToString() + " Hour(s)\n(" + EstimatedMinutesD + " Minute(s))";
                                 }
 
                                 return EstimatedMinutesD + " Minute(s)";
