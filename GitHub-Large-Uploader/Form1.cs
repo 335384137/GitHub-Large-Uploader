@@ -67,7 +67,14 @@ namespace GitHub_Large_Uploader
                 ExitButton.Enabled = false;
                 foreach (var file in Source.GetFiles())
                 {
-                    file.MoveTo(GitDirectory + "\\" + file.Name);
+                    if (CopyFilesCheckBox.Checked == false)
+                    {
+                        file.MoveTo(GitDirectory + "\\" + file.Name);
+                    }
+                    else
+                    {
+                        file.CopyTo(GitDirectory + "\\" + file.Name);
+                    }
                     StatusLabel.Text = "Status: Pushing " + file.Name;
                     if (ShowCommandCheckBox.Checked == false)
                     {
@@ -121,7 +128,22 @@ namespace GitHub_Large_Uploader
                 ExitButton.Enabled = true;
             }
             SoundPlayer dew = new SoundPlayer(Resources.Finished_Upload);
-            dew.Play();
+            await Task.Factory.StartNew(() => { dew.PlaySync(); });
+            StatusLabel.Text = "Status: Waiting for input";
+            progressBar1.Value = 0;
+            SystemSounds.Beep.Play();
+            if (ShutdownCheckbox.Checked == true)
+            {
+                SoundPlayer Shut = new SoundPlayer(Resources.ShutdownIn30Seconds);
+                await Task.Factory.StartNew(() => { Shut.PlaySync(); });
+                for (int i = 30; i > 0; i = i - 1)
+                {
+                    StatusLabel.Text = "Shutting Down In: " + i + " Seconds";
+                    await Task.Delay(1000);
+                }
+                StatusLabel.Text = "Shutting Down";
+                await RunCommandHidden("shutdown /s /f /t 00");
+            }
         }
 
         private bool Exit = false;

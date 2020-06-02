@@ -68,5 +68,23 @@ namespace GitHub_Large_Uploader.Properties {
                 return ResourceManager.GetStream("Finished_Upload", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ShutdownIn30Seconds {
+            get {
+                return ResourceManager.GetStream("ShutdownIn30Seconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ShuttingDown {
+            get {
+                return ResourceManager.GetStream("ShuttingDown", resourceCulture);
+            }
+        }
     }
 }

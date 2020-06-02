@@ -121,4 +121,10 @@
   <data name="Finished_Upload" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Finished Upload.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ShutdownIn30Seconds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ShutdownIn30Seconds.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ShuttingDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ShuttingDown.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

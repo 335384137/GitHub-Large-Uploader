@@ -39,14 +39,16 @@
             this.StatusLabel = new System.Windows.Forms.Label();
             this.ShowCommandCheckBox = new System.Windows.Forms.CheckBox();
             this.ExitButton = new System.Windows.Forms.Button();
+            this.CopyFilesCheckBox = new System.Windows.Forms.CheckBox();
+            this.ShutdownCheckbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(7, 81);
+            this.button1.Location = new System.Drawing.Point(7, 71);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(620, 26);
+            this.button1.Size = new System.Drawing.Size(620, 36);
             this.button1.TabIndex = 0;
             this.button1.Text = "Upload!";
             this.button1.UseVisualStyleBackColor = true;
@@ -121,7 +123,7 @@
             // StatusLabel
             // 
             this.StatusLabel.AutoSize = true;
-            this.StatusLabel.Location = new System.Drawing.Point(16, 140);
+            this.StatusLabel.Location = new System.Drawing.Point(16, 138);
             this.StatusLabel.Name = "StatusLabel";
             this.StatusLabel.Size = new System.Drawing.Size(159, 17);
             this.StatusLabel.TabIndex = 8;
@@ -130,7 +132,7 @@
             // ShowCommandCheckBox
             // 
             this.ShowCommandCheckBox.AutoSize = true;
-            this.ShowCommandCheckBox.Location = new System.Drawing.Point(455, 139);
+            this.ShowCommandCheckBox.Location = new System.Drawing.Point(253, 177);
             this.ShowCommandCheckBox.Name = "ShowCommandCheckBox";
             this.ShowCommandCheckBox.Size = new System.Drawing.Size(175, 21);
             this.ShowCommandCheckBox.TabIndex = 9;
@@ -139,7 +141,7 @@
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(455, 166);
+            this.ExitButton.Location = new System.Drawing.Point(450, 181);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(175, 38);
             this.ExitButton.TabIndex = 10;
@@ -147,12 +149,34 @@
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
+            // CopyFilesCheckBox
+            // 
+            this.CopyFilesCheckBox.AutoSize = true;
+            this.CopyFilesCheckBox.Location = new System.Drawing.Point(19, 176);
+            this.CopyFilesCheckBox.Name = "CopyFilesCheckBox";
+            this.CopyFilesCheckBox.Size = new System.Drawing.Size(192, 21);
+            this.CopyFilesCheckBox.TabIndex = 11;
+            this.CopyFilesCheckBox.Text = "Copy files instead of move";
+            this.CopyFilesCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // ShutdownCheckbox
+            // 
+            this.ShutdownCheckbox.AutoSize = true;
+            this.ShutdownCheckbox.Location = new System.Drawing.Point(19, 203);
+            this.ShutdownCheckbox.Name = "ShutdownCheckbox";
+            this.ShutdownCheckbox.Size = new System.Drawing.Size(242, 21);
+            this.ShutdownCheckbox.TabIndex = 12;
+            this.ShutdownCheckbox.Text = "Shutdown computer when finished";
+            this.ShutdownCheckbox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.ClientSize = new System.Drawing.Size(643, 207);
+            this.ClientSize = new System.Drawing.Size(632, 231);
+            this.Controls.Add(this.ShutdownCheckbox);
+            this.Controls.Add(this.CopyFilesCheckBox);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.ShowCommandCheckBox);
             this.Controls.Add(this.StatusLabel);
@@ -188,6 +212,8 @@
         private System.Windows.Forms.Label StatusLabel;
         private System.Windows.Forms.CheckBox ShowCommandCheckBox;
         private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.CheckBox CopyFilesCheckBox;
+        private System.Windows.Forms.CheckBox ShutdownCheckbox;
     }
 }
 

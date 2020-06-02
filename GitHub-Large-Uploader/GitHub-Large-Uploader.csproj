@@ -87,5 +87,11 @@
   <ItemGroup>
     <None Include="Resources\Finished Upload.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ShutdownIn30Seconds.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ShuttingDown.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
