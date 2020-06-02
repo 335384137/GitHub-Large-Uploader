@@ -67,15 +67,24 @@ namespace GitHub_Large_Uploader
                 DirectoryInfo Source = new DirectoryInfo(textBox1.Text);
                 var Files = 0;
                 ExitButton.Enabled = false;
+                UploadButton.Enabled = false;
                 foreach (var file in Source.GetFiles())
                 {
                     ForceNextButton.Enabled = true;
                     if (CopyFilesCheckBox.Checked == false)
                     {
+                        if (File.Exists(GitDirectory + "\\" + file.Name))
+                        {
+                            File.Delete(GitDirectory + "\\" + file.Name);
+                        }
                         file.MoveTo(GitDirectory + "\\" + file.Name);
                     }
                     else
                     {
+                        if (File.Exists(GitDirectory + "\\" + file.Name))
+                        {
+                            File.Delete(GitDirectory + "\\" + file.Name);
+                        }
                         file.CopyTo(GitDirectory + "\\" + file.Name);
                     }
                     StatusLabel.Text = "Status: Pushing " + file.Name;
@@ -116,13 +125,14 @@ namespace GitHub_Large_Uploader
                         {
                             int EstimatedMinutesD = ToMinutes * (progressBar1.Maximum - Files);
                             int EstimatedSeconds = ToSeconds * (progressBar1.Maximum - Files);
-                            if (Convert.ToBoolean(EstimatedSeconds > 59) != Convert.ToBoolean(EstimatedMinutesD == 0))
+                            Console.WriteLine("Estimated Minutes: " + EstimatedMinutesD + " Estimated Seconds: " + EstimatedSeconds);
+                            if (Convert.ToBoolean(EstimatedSeconds < 60))
                             {
                                 return EstimatedSeconds + " Second(s)";
                             }
                             else
                             {
-                                if (EstimatedMinutesD > 59)
+                                if (EstimatedMinutesD < 60)
                                 {
                                     return (EstimatedMinutesD / 60).ToString() + " Hour(s)";
                                 }
@@ -182,6 +192,7 @@ namespace GitHub_Large_Uploader
                     Internet = false;
                 }
 
+                UploadButton.Enabled = true;
                 ExitButton.Enabled = true;
             }
             SoundPlayer dew = new SoundPlayer(Resources.Finished_Upload);

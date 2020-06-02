@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.UploadButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -45,16 +45,16 @@
             this.EstimatedLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // UploadButton
             // 
-            this.button1.Location = new System.Drawing.Point(7, 71);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(620, 36);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Upload!";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.UploadButton.Location = new System.Drawing.Point(7, 71);
+            this.UploadButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UploadButton.Name = "UploadButton";
+            this.UploadButton.Size = new System.Drawing.Size(620, 36);
+            this.UploadButton.TabIndex = 0;
+            this.UploadButton.Text = "Upload!";
+            this.UploadButton.UseVisualStyleBackColor = true;
+            this.UploadButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
@@ -210,7 +210,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.UploadButton);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
@@ -224,7 +224,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button UploadButton;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button2;
