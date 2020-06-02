@@ -116,6 +116,10 @@ namespace GitHub_Large_Uploader
                             {
                                 Internet = true;
                             }
+                            else
+                            {
+                                StatusLabel.Text = "Status: No Internet";
+                            }
                         }
                         catch
                         {
