@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,12 +23,15 @@ namespace GitHub_Large_Uploader
         }
 
         private string User = System.Environment.GetEnvironmentVariable("USERPROFILE");
-        public void RunCommand(string Command)
+        public async Task RunCommand(string Command)
         {
             string[] CommandChut = { Command };
             File.WriteAllLines(User + "\\Documents\\RunCommand.bat", CommandChut);
-            var C = Process.Start(User + "\\Documents\\RunCommand.bat");
-            C.WaitForExit();
+            await Task.Factory.StartNew(() =>
+            {
+                var C = Process.Start(User + "\\Documents\\RunCommand.bat");
+                C.WaitForExit();
+            });
             File.Delete(User + "\\Documents\\RunCommand.bat");
         }
 
@@ -52,12 +56,52 @@ namespace GitHub_Large_Uploader
                 foreach (var file in Source.GetFiles())
                 {
                     file.MoveTo(GitDirectory + "\\" + file.Name);
-                    RunCommand("cd /d \"" + GitDirectory + "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                    if (ShowCommandCheckBox.Checked == false)
+                    {
+                        await RunCommandHidden("cd /d \"" + GitDirectory +
+                                               "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                    }
+                    else
+                    {
+                        await RunCommand("cd /d \"" + GitDirectory +
+                                               "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                    }
+
                     Files++;
                     if (Files < progressBar1.Maximum)
                     {
                         progressBar1.Value = Files;
                     }
+
+                    bool Internet = false;
+                    while(Internet == false)
+                    {
+                        try
+                        {
+                            using (var client = new WebClient())
+                            {
+                                client.DownloadFileAsync(
+                                    new Uri(
+                                        "https://raw.githubusercontent.com/EpicGamesGun/GitHub-Large-Uploader/master/InternetCheck.txt"),
+                                    Environment.GetEnvironmentVariable("TEMP") + "\\GitHubInternetCheck.txt");
+                                while (client.IsBusy)
+                                {
+                                    await Task.Delay(10);
+                                }
+                            }
+
+                            if (File.ReadLines(Environment.GetEnvironmentVariable("TEMP") + "\\GitHubInternetCheck.txt")
+                                    .ElementAtOrDefault(0) == "true")
+                            {
+                                Internet = true;
+                            }
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                    Internet = false;
                 }
             }
             SoundPlayer dew = new SoundPlayer(Resources.Finished_Upload);
