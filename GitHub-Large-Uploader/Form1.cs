@@ -53,7 +53,8 @@ namespace GitHub_Large_Uploader
             MaximizeBox = false;
             ForceNextButton.Enabled = false;
         }
-
+        Timer time = new Timer();
+        Stopwatch stopwatch = new Stopwatch();
         private async void button1_Click(object sender, EventArgs e)
         {
             if (Convert.ToBoolean(textBox1.Text == "") != Convert.ToBoolean(textBox2.Text == ""))
@@ -78,6 +79,7 @@ namespace GitHub_Large_Uploader
                         file.CopyTo(GitDirectory + "\\" + file.Name);
                     }
                     StatusLabel.Text = "Status: Pushing " + file.Name;
+                    stopwatch.Start();
                     if (ShowCommandCheckBox.Checked == false)
                     {
                         try
@@ -103,7 +105,38 @@ namespace GitHub_Large_Uploader
 
                         }
                     }
+                    stopwatch.Stop();
+                    try
+                    {
+                        int ToSeconds = Int32.Parse(stopwatch.ElapsedMilliseconds.ToString()) / 1000;
+                        int ToMinutes = ToSeconds / 60;
+                        int ToHour = ToMinutes / 60;
 
+                        string EstimatedMinutes()
+                        {
+                            int EstimatedMinutesD = ToMinutes * (progressBar1.Maximum - Files);
+                            int EstimatedSeconds = ToSeconds * (progressBar1.Maximum - Files);
+                            if (Convert.ToBoolean(EstimatedSeconds > 59) != Convert.ToBoolean(EstimatedMinutesD == 0))
+                            {
+                                return EstimatedSeconds + " Second(s)";
+                            }
+                            else
+                            {
+                                if (EstimatedMinutesD > 59)
+                                {
+                                    return (EstimatedMinutesD / 60).ToString() + " Hour(s)";
+                                }
+
+                                return EstimatedMinutesD + " Minute(s)";
+                            }
+                        }
+                        EstimatedLabel.Text = "Estimated Time Left: " + EstimatedMinutes();
+                    }
+                    catch
+                    {
+                        EstimatedLabel.Text = "No estimation";
+                    }
+                    stopwatch.Reset();
                     Files++;
                     if (Files < progressBar1.Maximum)
                     {

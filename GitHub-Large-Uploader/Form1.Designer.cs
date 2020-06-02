@@ -42,6 +42,7 @@
             this.CopyFilesCheckBox = new System.Windows.Forms.CheckBox();
             this.ShutdownCheckbox = new System.Windows.Forms.CheckBox();
             this.ForceNextButton = new System.Windows.Forms.LinkLabel();
+            this.EstimatedLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -181,12 +182,21 @@
             this.ForceNextButton.Text = "Force Next";
             this.ForceNextButton.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ForceNextButton_LinkClicked);
             // 
+            // EstimatedLabel
+            // 
+            this.EstimatedLabel.AutoSize = true;
+            this.EstimatedLabel.Location = new System.Drawing.Point(398, 138);
+            this.EstimatedLabel.Name = "EstimatedLabel";
+            this.EstimatedLabel.Size = new System.Drawing.Size(0, 17);
+            this.EstimatedLabel.TabIndex = 14;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.ClientSize = new System.Drawing.Size(632, 231);
+            this.ClientSize = new System.Drawing.Size(632, 229);
+            this.Controls.Add(this.EstimatedLabel);
             this.Controls.Add(this.ForceNextButton);
             this.Controls.Add(this.ShutdownCheckbox);
             this.Controls.Add(this.CopyFilesCheckBox);
@@ -228,6 +238,7 @@
         private System.Windows.Forms.CheckBox CopyFilesCheckBox;
         private System.Windows.Forms.CheckBox ShutdownCheckbox;
         private System.Windows.Forms.LinkLabel ForceNextButton;
+        private System.Windows.Forms.Label EstimatedLabel;
     }
 }
 
