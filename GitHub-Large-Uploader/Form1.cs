@@ -218,6 +218,7 @@ namespace GitHub_Large_Uploader
         private bool Kill = false;
         public async Task RunCommandHidden(string Command)
         {
+            Kill = false;
             string[] CommandChut = { Command };
             File.WriteAllLines(System.Environment.GetEnvironmentVariable("USERPROFILE") + "\\Documents\\RunCommand.bat", CommandChut);
             Process C = new Process();
