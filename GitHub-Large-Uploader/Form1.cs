@@ -64,6 +64,31 @@ namespace GitHub_Large_Uploader
             dew.Play();
         }
 
+        private bool Exit = false;
+        public async Task RunCommandHidden(string Command)
+        {
+            string[] CommandChut = { Command };
+            File.WriteAllLines(System.Environment.GetEnvironmentVariable("USERPROFILE") + "\\Documents\\RunCommand.bat", CommandChut);
+            Process C = new Process();
+            C.StartInfo.FileName = System.Environment.GetEnvironmentVariable("USERPROFILE") + "\\Documents\\RunCommand.bat";
+            C.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            C.EnableRaisingEvents = true;
+            C.Exited += C_Exited;
+            C.Start();
+            while (Exit == false)
+            {
+                await Task.Delay(10);
+            }
+
+            Exit = false;
+            File.Delete(System.Environment.GetEnvironmentVariable("USERPROFILE") + "\\Documents\\RunCommand.bat");
+        }
+
+        private void C_Exited(object sender, EventArgs e)
+        {
+            Exit = true;
+        }
+
         private async void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Please select the source directory for the files that you want to upload");
@@ -88,6 +113,10 @@ namespace GitHub_Large_Uploader
                 Close();
                 Application.Exit();
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
             MessageBox.Show("Now select your GitHub Directory");
             FolderBrowserDialog dewDialog = new FolderBrowserDialog();
             dewDialog.ShowDialog();
