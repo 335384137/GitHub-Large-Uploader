@@ -56,6 +56,7 @@ namespace GitHub_Large_Uploader
                 foreach (var file in Source.GetFiles())
                 {
                     file.MoveTo(GitDirectory + "\\" + file.Name);
+                    StatusLabel.Text = "Status: Pushing " + file.Name;
                     if (ShowCommandCheckBox.Checked == false)
                     {
                         await RunCommandHidden("cd /d \"" + GitDirectory +
@@ -78,6 +79,7 @@ namespace GitHub_Large_Uploader
                     {
                         try
                         {
+                            StatusLabel.Text = "Status: Checking for internet";
                             using (var client = new WebClient())
                             {
                                 client.DownloadFileAsync(
@@ -98,7 +100,7 @@ namespace GitHub_Large_Uploader
                         }
                         catch
                         {
-
+                            StatusLabel.Text = "Status: No Internet";
                         }
                     }
                     Internet = false;

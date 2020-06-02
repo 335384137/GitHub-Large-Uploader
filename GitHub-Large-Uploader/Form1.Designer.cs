@@ -36,7 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button3 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.StatusLabel = new System.Windows.Forms.Label();
             this.ShowCommandCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
@@ -117,14 +117,14 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // label3
+            // StatusLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 140);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(159, 17);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Status: Waiting for input";
+            this.StatusLabel.AutoSize = true;
+            this.StatusLabel.Location = new System.Drawing.Point(16, 140);
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(159, 17);
+            this.StatusLabel.TabIndex = 8;
+            this.StatusLabel.Text = "Status: Waiting for input";
             // 
             // ShowCommandCheckBox
             // 
@@ -143,7 +143,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(643, 166);
             this.Controls.Add(this.ShowCommandCheckBox);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.StatusLabel);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label2);
@@ -173,7 +173,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label StatusLabel;
         private System.Windows.Forms.CheckBox ShowCommandCheckBox;
     }
 }
