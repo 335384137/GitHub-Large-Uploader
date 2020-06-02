@@ -80,13 +80,28 @@ namespace GitHub_Large_Uploader
                     StatusLabel.Text = "Status: Pushing " + file.Name;
                     if (ShowCommandCheckBox.Checked == false)
                     {
-                        await RunCommandHidden("cd /d \"" + GitDirectory +
-                                               "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                        try
+                        {
+                            await RunCommandHidden("cd /d \"" + GitDirectory +
+                                                   "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                        }
+                        catch
+                        {
+
+                        }
                     }
                     else
                     {
-                        await RunCommand("cd /d \"" + GitDirectory +
-                                               "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                        try
+                        {
+
+                            await RunCommand("cd /d \"" + GitDirectory +
+                                             "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                        }
+                        catch
+                        {
+
+                        }
                     }
 
                     Files++;
@@ -122,6 +137,7 @@ namespace GitHub_Large_Uploader
                             {
                                 StatusLabel.Text = "Status: No Internet";
                             }
+                            File.Delete(Environment.GetEnvironmentVariable("TEMP") + "\\GitHubInternetCheck.txt");
                         }
                         catch
                         {
