@@ -35,11 +35,22 @@ namespace GitHub_Large_Uploader
             File.Delete(User + "\\Documents\\RunCommand.bat");
         }
 
-
+        private const int CP_NOCLOSE_BUTTON = 0x200;
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
+                return myCp;
+            }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             textBox1.ReadOnly = true;
             textBox2.ReadOnly = true;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -53,6 +64,7 @@ namespace GitHub_Large_Uploader
                 string GitDirectory = textBox2.Text;
                 DirectoryInfo Source = new DirectoryInfo(textBox1.Text);
                 var Files = 0;
+                ExitButton.Enabled = false;
                 foreach (var file in Source.GetFiles())
                 {
                     file.MoveTo(GitDirectory + "\\" + file.Name);
@@ -105,6 +117,8 @@ namespace GitHub_Large_Uploader
                     }
                     Internet = false;
                 }
+
+                ExitButton.Enabled = true;
             }
             SoundPlayer dew = new SoundPlayer(Resources.Finished_Upload);
             dew.Play();
@@ -177,6 +191,11 @@ namespace GitHub_Large_Uploader
                 Close();
                 Application.Exit();
             }
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

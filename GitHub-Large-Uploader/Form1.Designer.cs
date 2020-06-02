@@ -38,6 +38,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.StatusLabel = new System.Windows.Forms.Label();
             this.ShowCommandCheckBox = new System.Windows.Forms.CheckBox();
+            this.ExitButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -136,12 +137,23 @@
             this.ShowCommandCheckBox.Text = "Show command window";
             this.ShowCommandCheckBox.UseVisualStyleBackColor = true;
             // 
+            // ExitButton
+            // 
+            this.ExitButton.Location = new System.Drawing.Point(455, 166);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(175, 38);
+            this.ExitButton.TabIndex = 10;
+            this.ExitButton.Text = "Exit";
+            this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.ClientSize = new System.Drawing.Size(643, 166);
+            this.ClientSize = new System.Drawing.Size(643, 207);
+            this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.ShowCommandCheckBox);
             this.Controls.Add(this.StatusLabel);
             this.Controls.Add(this.button3);
@@ -175,6 +187,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label StatusLabel;
         private System.Windows.Forms.CheckBox ShowCommandCheckBox;
+        private System.Windows.Forms.Button ExitButton;
     }
 }
 
