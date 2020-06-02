@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GitHub_Large_Uploader.Properties;
+using Ookii.Dialogs.Wpf;
 
 namespace GitHub_Large_Uploader
 {
@@ -263,7 +264,7 @@ namespace GitHub_Large_Uploader
         private async void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Please select the source directory for the files that you want to upload");
-            FolderBrowserDialog dewBrowserDialog = new FolderBrowserDialog();
+            VistaFolderBrowserDialog dewBrowserDialog = new VistaFolderBrowserDialog();
             dewBrowserDialog.ShowDialog();
             if (Directory.Exists(dewBrowserDialog.SelectedPath))
             {
@@ -289,7 +290,12 @@ namespace GitHub_Large_Uploader
         private void button3_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Now select your GitHub Directory");
-            FolderBrowserDialog dewDialog = new FolderBrowserDialog();
+            VistaFolderBrowserDialog dewDialog = new VistaFolderBrowserDialog();
+            if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) +
+                                 "\\Documents\\GitHub"))
+            {
+                dewDialog.RootFolder = Environment.SpecialFolder.CommonDocuments;
+            }
             dewDialog.ShowDialog();
             if (Directory.Exists(dewDialog.SelectedPath))
             {

@@ -26,3 +26,6 @@ C:\Users\cntow\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\
 C:\Users\cntow\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub-Large-Uploader.csproj.CoreCompileInputs.cache
 C:\Users\cntow\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub-Large-Uploader.exe
 C:\Users\cntow\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub-Large-Uploader.pdb
+C:\Users\cntow\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\bin\Debug\Ookii.Dialogs.Wpf.dll
+C:\Users\cntow\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\bin\Debug\Ookii.Dialogs.Wpf.xml
+C:\Users\cntow\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub-Large-Uploader.csproj.CopyComplete
