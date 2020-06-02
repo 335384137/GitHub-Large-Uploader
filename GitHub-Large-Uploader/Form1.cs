@@ -177,7 +177,14 @@ namespace GitHub_Large_Uploader
 
             Kill = false;
             Exit = false;
-            File.Delete(System.Environment.GetEnvironmentVariable("USERPROFILE") + "\\Documents\\RunCommand.bat");
+            try
+            {
+                File.Delete(System.Environment.GetEnvironmentVariable("USERPROFILE") + "\\Documents\\RunCommand.bat");
+            }
+            catch
+            {
+
+            }
         }
 
         private void C_Exited(object sender, EventArgs e)
