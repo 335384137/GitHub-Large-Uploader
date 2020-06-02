@@ -51,6 +51,7 @@ namespace GitHub_Large_Uploader
             textBox2.ReadOnly = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
+            ForceNextButton.Enabled = false;
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -67,6 +68,7 @@ namespace GitHub_Large_Uploader
                 ExitButton.Enabled = false;
                 foreach (var file in Source.GetFiles())
                 {
+                    ForceNextButton.Enabled = true;
                     if (CopyFilesCheckBox.Checked == false)
                     {
                         file.MoveTo(GitDirectory + "\\" + file.Name);
@@ -125,6 +127,8 @@ namespace GitHub_Large_Uploader
                         {
                             StatusLabel.Text = "Status: No Internet";
                         }
+
+                        ForceNextButton.Enabled = false;
                     }
                     Internet = false;
                 }
@@ -151,6 +155,7 @@ namespace GitHub_Large_Uploader
         }
 
         private bool Exit = false;
+        private bool Kill = false;
         public async Task RunCommandHidden(string Command)
         {
             string[] CommandChut = { Command };
@@ -164,8 +169,13 @@ namespace GitHub_Large_Uploader
             while (Exit == false)
             {
                 await Task.Delay(10);
+                if (Kill == true)
+                {
+                    C.Kill();
+                }
             }
 
+            Kill = false;
             Exit = false;
             File.Delete(System.Environment.GetEnvironmentVariable("USERPROFILE") + "\\Documents\\RunCommand.bat");
         }
@@ -222,6 +232,11 @@ namespace GitHub_Large_Uploader
         private void ExitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private async void ForceNextButton_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Kill = true;
         }
     }
 }
