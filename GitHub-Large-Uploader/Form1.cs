@@ -67,6 +67,7 @@ namespace GitHub_Large_Uploader
             }
             else
             {
+                File.WriteAllText(Environment.GetEnvironmentVariable("TEMP") + "\\ProcessingUpload.txt", textBox1.Text + ":" + textBox2.Text);
                 while (Queue == false)
                 {
                     string GitDirectory = textBox2.Text;
@@ -143,7 +144,7 @@ namespace GitHub_Large_Uploader
                                 }
                                 else
                                 {
-                                    if (EstimatedMinutesD < 60)
+                                    if (EstimatedMinutesD > 60)
                                     {
                                         return (EstimatedMinutesD / 60).ToString() + " Hour(s)\n(" + EstimatedMinutesD +
                                                " Minute(s))";
@@ -211,19 +212,31 @@ namespace GitHub_Large_Uploader
                             QueueButtonPressed = false;
                             Queue = false;
                             var Lines = 0;
-                            foreach (var readLine in File.ReadLines(UploadQueue))
+                            if (File.ReadLines(UploadQueue).ElementAtOrDefault(0) == "")
                             {
-                                Lines++;
+                                Queue = true;
                             }
-                            var LinesToRead = 1;
-                            while (LinesToRead < Lines)
+                            else
                             {
-                                File.WriteAllText(UploadQueue + "TEMP", File.ReadLines(UploadQueue).ElementAtOrDefault(LinesToRead));
-                                LinesToRead++;
+                                foreach (var readLine in File.ReadLines(UploadQueue))
+                                {
+                                    Lines++;
+                                }
+
+                                var LinesToRead = 1;
+                                while (LinesToRead < Lines)
+                                {
+                                    File.WriteAllText(UploadQueue + "TEMP",
+                                        File.ReadLines(UploadQueue).ElementAtOrDefault(LinesToRead));
+                                    LinesToRead++;
+                                }
+
+                                File.WriteAllText(UploadQueue, File.ReadAllText(UploadQueue + "TEMP"));
+                                Lines = 0;
+                                LinesToRead = 1;
+                                textBox1.Text = File.ReadLines(UploadQueue).ElementAtOrDefault(0).Split(':')[0].Trim();
+                                textBox2.Text = File.ReadLines(UploadQueue).ElementAtOrDefault(0).Split(':')[1].Trim();
                             }
-                            File.WriteAllText(UploadQueue, File.ReadAllText(UploadQueue + "TEMP"));
-                            Lines = 0;
-                            LinesToRead = 1;
                         }
                         else
                         {
@@ -372,6 +385,18 @@ namespace GitHub_Large_Uploader
             {
                 File.WriteAllText(Environment.GetEnvironmentVariable("TEMP") + "\\UploadQueue.txt",
                     File.ReadAllText(Environment.GetEnvironmentVariable("TEMP") + "\\UploadQueue.txt") + "\n" + textBox1.Text + ":" + textBox2.Text);
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (File.Exists(UploadQueue))
+            {
+                Process.Start(UploadQueue);
+            }
+            else
+            {
+                MessageBox.Show("No Queue");
             }
         }
     }

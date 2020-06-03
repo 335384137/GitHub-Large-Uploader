@@ -46,6 +46,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.QueueButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +55,7 @@
             this.UploadButton.Location = new System.Drawing.Point(7, 71);
             this.UploadButton.Margin = new System.Windows.Forms.Padding(4);
             this.UploadButton.Name = "UploadButton";
-            this.UploadButton.Size = new System.Drawing.Size(620, 36);
+            this.UploadButton.Size = new System.Drawing.Size(727, 36);
             this.UploadButton.TabIndex = 0;
             this.UploadButton.Text = "Upload!";
             this.UploadButton.UseVisualStyleBackColor = true;
@@ -112,7 +113,7 @@
             this.progressBar1.Location = new System.Drawing.Point(11, 112);
             this.progressBar1.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(615, 22);
+            this.progressBar1.Size = new System.Drawing.Size(723, 22);
             this.progressBar1.TabIndex = 6;
             // 
             // button3
@@ -138,7 +139,7 @@
             // ShowCommandCheckBox
             // 
             this.ShowCommandCheckBox.AutoSize = true;
-            this.ShowCommandCheckBox.Location = new System.Drawing.Point(253, 177);
+            this.ShowCommandCheckBox.Location = new System.Drawing.Point(246, 235);
             this.ShowCommandCheckBox.Name = "ShowCommandCheckBox";
             this.ShowCommandCheckBox.Size = new System.Drawing.Size(175, 21);
             this.ShowCommandCheckBox.TabIndex = 9;
@@ -147,7 +148,7 @@
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(451, 224);
+            this.ExitButton.Location = new System.Drawing.Point(550, 276);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(175, 38);
             this.ExitButton.TabIndex = 10;
@@ -158,7 +159,7 @@
             // CopyFilesCheckBox
             // 
             this.CopyFilesCheckBox.AutoSize = true;
-            this.CopyFilesCheckBox.Location = new System.Drawing.Point(19, 176);
+            this.CopyFilesCheckBox.Location = new System.Drawing.Point(12, 234);
             this.CopyFilesCheckBox.Name = "CopyFilesCheckBox";
             this.CopyFilesCheckBox.Size = new System.Drawing.Size(192, 21);
             this.CopyFilesCheckBox.TabIndex = 11;
@@ -168,7 +169,7 @@
             // ShutdownCheckbox
             // 
             this.ShutdownCheckbox.AutoSize = true;
-            this.ShutdownCheckbox.Location = new System.Drawing.Point(19, 203);
+            this.ShutdownCheckbox.Location = new System.Drawing.Point(12, 261);
             this.ShutdownCheckbox.Name = "ShutdownCheckbox";
             this.ShutdownCheckbox.Size = new System.Drawing.Size(242, 21);
             this.ShutdownCheckbox.TabIndex = 12;
@@ -197,7 +198,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GitHub_Large_Uploader.Properties.Resources.Annotation_2020_06_02_223343;
-            this.pictureBox1.Location = new System.Drawing.Point(23, 230);
+            this.pictureBox1.Location = new System.Drawing.Point(16, 288);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(164, 32);
             this.pictureBox1.TabIndex = 15;
@@ -206,7 +207,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(193, 235);
+            this.label3.Location = new System.Drawing.Point(186, 293);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(119, 17);
             this.label3.TabIndex = 16;
@@ -214,20 +215,31 @@
             // 
             // QueueButton
             // 
-            this.QueueButton.Location = new System.Drawing.Point(495, 138);
+            this.QueueButton.Location = new System.Drawing.Point(632, 8);
             this.QueueButton.Name = "QueueButton";
-            this.QueueButton.Size = new System.Drawing.Size(132, 35);
+            this.QueueButton.Size = new System.Drawing.Size(102, 30);
             this.QueueButton.TabIndex = 17;
             this.QueueButton.Text = "Add to queue";
             this.QueueButton.UseVisualStyleBackColor = true;
             this.QueueButton.Click += new System.EventHandler(this.QueueButton_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(632, 40);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 24);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "View Queue";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.ClientSize = new System.Drawing.Size(632, 274);
+            this.ClientSize = new System.Drawing.Size(737, 326);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.QueueButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox1);
@@ -278,6 +290,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button QueueButton;
+        private System.Windows.Forms.Button button1;
     }
 }
 
