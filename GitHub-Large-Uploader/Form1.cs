@@ -69,7 +69,7 @@ namespace GitHub_Large_Uploader
             else
             {
                 QueuePanel.Visible = true;
-                File.WriteAllText(Environment.GetEnvironmentVariable("TEMP") + "\\ProcessingUpload.txt", textBox1.Text + ":" + textBox2.Text);
+                File.WriteAllText(Environment.GetEnvironmentVariable("TEMP") + "\\ProcessingUpload.txt", textBox1.Text + "$" + textBox2.Text);
                 while (Queue == false)
                 {
                     string GitDirectory = textBox2.Text;
@@ -229,16 +229,15 @@ namespace GitHub_Large_Uploader
                             var LinesToRead = 1;
                             while (LinesToRead < Lines)
                             {
-                                File.WriteAllText(UploadQueue + "TEMP",
-                                    File.ReadLines(UploadQueue).ElementAtOrDefault(LinesToRead));
+                                File.WriteAllText(UploadQueue + "TEMP",File.ReadAllText(UploadQueue + "TEMP") + "\n" + File.ReadLines(UploadQueue).ElementAtOrDefault(LinesToRead));
                                 LinesToRead++;
                             }
 
                             File.WriteAllText(UploadQueue, File.ReadAllText(UploadQueue + "TEMP"));
                             Lines = 0;
                             LinesToRead = 1;
-                            textBox1.Text = File.ReadLines(UploadQueue).ElementAtOrDefault(0).Split(':')[0].Trim();
-                            textBox2.Text = File.ReadLines(UploadQueue).ElementAtOrDefault(0).Split(':')[1].Trim();
+                            textBox1.Text = File.ReadLines(UploadQueue).ElementAtOrDefault(0).Split('$')[0].Trim();
+                            textBox2.Text = File.ReadLines(UploadQueue).ElementAtOrDefault(0).Split('$')[1].Trim();
                         }
                     }
                     else
@@ -382,12 +381,12 @@ namespace GitHub_Large_Uploader
             QueueButtonPressed = true;
             if (!File.Exists(Environment.GetEnvironmentVariable("TEMP") + "\\UploadQueue.txt"))
             {
-                File.WriteAllText(Environment.GetEnvironmentVariable("TEMP") + "\\UploadQueue.txt", textBox1.Text + ":" + textBox2.Text);
+                File.WriteAllText(Environment.GetEnvironmentVariable("TEMP") + "\\UploadQueue.txt", textBox1.Text + "$" + textBox2.Text);
             }
             else
             {
                 File.WriteAllText(Environment.GetEnvironmentVariable("TEMP") + "\\UploadQueue.txt",
-                    File.ReadAllText(Environment.GetEnvironmentVariable("TEMP") + "\\UploadQueue.txt") + "\n" + textBox1.Text + ":" + textBox2.Text);
+                    File.ReadAllText(Environment.GetEnvironmentVariable("TEMP") + "\\UploadQueue.txt") + "\n" + textBox1.Text + "$" + textBox2.Text);
             }
         }
 
