@@ -152,7 +152,14 @@ namespace GitHub_Large_Uploader
                                                " Minute(s))";
                                     }
 
-                                    return EstimatedMinutesD + " Minute(s)";
+                                    if (EstimatedMinutesD == 0)
+                                    {
+                                        return EstimatedSeconds + "Second(s)";
+                                    }
+                                    else
+                                    {
+                                        return EstimatedMinutesD + " Minute(s)";
+                                    }
                                 }
                             }
 
