@@ -43,12 +43,15 @@
             this.ShutdownCheckbox = new System.Windows.Forms.CheckBox();
             this.ForceNextButton = new System.Windows.Forms.LinkLabel();
             this.EstimatedLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // UploadButton
             // 
             this.UploadButton.Location = new System.Drawing.Point(7, 71);
-            this.UploadButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UploadButton.Margin = new System.Windows.Forms.Padding(4);
             this.UploadButton.Name = "UploadButton";
             this.UploadButton.Size = new System.Drawing.Size(620, 36);
             this.UploadButton.TabIndex = 0;
@@ -59,7 +62,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(140, 8);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(344, 23);
             this.textBox1.TabIndex = 1;
@@ -67,7 +70,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(140, 40);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(344, 23);
             this.textBox2.TabIndex = 2;
@@ -75,7 +78,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(496, 8);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(129, 24);
             this.button2.TabIndex = 3;
@@ -106,7 +109,7 @@
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(11, 112);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(615, 22);
             this.progressBar1.TabIndex = 6;
@@ -114,7 +117,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(496, 40);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(129, 24);
             this.button3.TabIndex = 7;
@@ -143,7 +146,7 @@
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(450, 181);
+            this.ExitButton.Location = new System.Drawing.Point(451, 224);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(175, 38);
             this.ExitButton.TabIndex = 10;
@@ -190,12 +193,32 @@
             this.EstimatedLabel.Size = new System.Drawing.Size(0, 17);
             this.EstimatedLabel.TabIndex = 14;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::GitHub_Large_Uploader.Properties.Resources.Annotation_2020_06_02_223343;
+            this.pictureBox1.Location = new System.Drawing.Point(23, 230);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(164, 32);
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(193, 235);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(119, 17);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Detector Included";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.ClientSize = new System.Drawing.Size(632, 229);
+            this.ClientSize = new System.Drawing.Size(632, 274);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.EstimatedLabel);
             this.Controls.Add(this.ForceNextButton);
             this.Controls.Add(this.ShutdownCheckbox);
@@ -212,11 +235,12 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.UploadButton);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.ShowIcon = false;
             this.Text = "GitHub Multipart Automatic Uploader";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,6 +263,8 @@
         private System.Windows.Forms.CheckBox ShutdownCheckbox;
         private System.Windows.Forms.LinkLabel ForceNextButton;
         private System.Windows.Forms.Label EstimatedLabel;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label3;
     }
 }
 
