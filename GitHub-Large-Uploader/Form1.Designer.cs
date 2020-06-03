@@ -47,7 +47,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.QueueButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.QueuePanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.QueuePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // UploadButton
@@ -215,7 +217,7 @@
             // 
             // QueueButton
             // 
-            this.QueueButton.Location = new System.Drawing.Point(632, 8);
+            this.QueueButton.Location = new System.Drawing.Point(3, 0);
             this.QueueButton.Name = "QueueButton";
             this.QueueButton.Size = new System.Drawing.Size(102, 30);
             this.QueueButton.TabIndex = 17;
@@ -225,7 +227,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(632, 40);
+            this.button1.Location = new System.Drawing.Point(3, 36);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(102, 24);
             this.button1.TabIndex = 18;
@@ -233,14 +235,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // QueuePanel
+            // 
+            this.QueuePanel.Controls.Add(this.QueueButton);
+            this.QueuePanel.Controls.Add(this.button1);
+            this.QueuePanel.Location = new System.Drawing.Point(626, 6);
+            this.QueuePanel.Name = "QueuePanel";
+            this.QueuePanel.Size = new System.Drawing.Size(106, 64);
+            this.QueuePanel.TabIndex = 19;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(737, 326);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.QueueButton);
+            this.Controls.Add(this.QueuePanel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.EstimatedLabel);
@@ -265,6 +275,7 @@
             this.Text = "GitHub Multipart Automatic Uploader";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.QueuePanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,6 +302,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button QueueButton;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel QueuePanel;
     }
 }
 

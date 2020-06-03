@@ -51,6 +51,7 @@ namespace GitHub_Large_Uploader
         private bool QueueButtonPressed = false;
         private void Form1_Load(object sender, EventArgs e)
         {
+            QueuePanel.Visible = false;
             textBox1.ReadOnly = true;
             textBox2.ReadOnly = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -67,6 +68,7 @@ namespace GitHub_Large_Uploader
             }
             else
             {
+                QueuePanel.Visible = true;
                 File.WriteAllText(Environment.GetEnvironmentVariable("TEMP") + "\\ProcessingUpload.txt", textBox1.Text + ":" + textBox2.Text);
                 while (Queue == false)
                 {
@@ -146,7 +148,7 @@ namespace GitHub_Large_Uploader
                                 {
                                     if (EstimatedMinutesD > 60)
                                     {
-                                        return (EstimatedMinutesD / 60).ToString() + " Hour(s)\n(" + EstimatedMinutesD +
+                                        return (EstimatedMinutesD / 60).ToString() + " Hour(s)\nor (" + EstimatedMinutesD +
                                                " Minute(s))";
                                     }
 
@@ -249,6 +251,8 @@ namespace GitHub_Large_Uploader
                 UploadButton.Enabled = true;
                 ExitButton.Enabled = true;
             }
+
+            QueuePanel.Visible = false;
             SoundPlayer dew = new SoundPlayer(Resources.Finished_Upload);
             await Task.Factory.StartNew(() => { dew.PlaySync(); });
             StatusLabel.Text = "Status: Waiting for input";
