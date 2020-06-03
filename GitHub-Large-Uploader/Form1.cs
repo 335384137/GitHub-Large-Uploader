@@ -46,6 +46,9 @@ namespace GitHub_Large_Uploader
                 return myCp;
             }
         }
+
+        private bool Queue = false;
+        private bool QueueButtonPressed = false;
         private void Form1_Load(object sender, EventArgs e)
         {
             textBox1.ReadOnly = true;
@@ -64,133 +67,170 @@ namespace GitHub_Large_Uploader
             }
             else
             {
-                string GitDirectory = textBox2.Text;
-                DirectoryInfo Source = new DirectoryInfo(textBox1.Text);
-                var Files = 0;
-                ExitButton.Enabled = false;
-                UploadButton.Enabled = false;
-                foreach (var file in Source.GetFiles())
+                while (Queue == false)
                 {
-                    ForceNextButton.Enabled = true;
-                    if (CopyFilesCheckBox.Checked == false)
+                    string GitDirectory = textBox2.Text;
+                    DirectoryInfo Source = new DirectoryInfo(textBox1.Text);
+                    var Files = 0;
+                    ExitButton.Enabled = false;
+                    UploadButton.Enabled = false;
+                    foreach (var file in Source.GetFiles())
                     {
-                        if (File.Exists(GitDirectory + "\\" + file.Name))
+                        ForceNextButton.Enabled = true;
+                        if (CopyFilesCheckBox.Checked == false)
                         {
-                            File.Delete(GitDirectory + "\\" + file.Name);
-                        }
-                        file.MoveTo(GitDirectory + "\\" + file.Name);
-                    }
-                    else
-                    {
-                        if (File.Exists(GitDirectory + "\\" + file.Name))
-                        {
-                            File.Delete(GitDirectory + "\\" + file.Name);
-                        }
-                        file.CopyTo(GitDirectory + "\\" + file.Name);
-                    }
-                    StatusLabel.Text = "Status: Pushing " + file.Name;
-                    stopwatch.Start();
-                    if (ShowCommandCheckBox.Checked == false)
-                    {
-                        try
-                        {
-                            await RunCommandHidden("cd /d \"" + GitDirectory +
-                                                   "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
-                        }
-                        catch
-                        {
-
-                        }
-                    }
-                    else
-                    {
-                        try
-                        {
-
-                            await RunCommand("cd /d \"" + GitDirectory +
-                                             "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
-                        }
-                        catch
-                        {
-
-                        }
-                    }
-                    stopwatch.Stop();
-                    try
-                    {
-                        int ToSeconds = Int32.Parse(stopwatch.ElapsedMilliseconds.ToString()) / 1000;
-                        int ToMinutes = ToSeconds / 60;
-                        int ToHour = ToMinutes / 60;
-
-                        string EstimatedMinutes()
-                        {
-                            int EstimatedMinutesD = ToMinutes * (progressBar1.Maximum - Files);
-                            int EstimatedSeconds = ToSeconds * (progressBar1.Maximum - Files);
-                            Console.WriteLine("Estimated Minutes: " + EstimatedMinutesD + " Estimated Seconds: " + EstimatedSeconds);
-                            if (Convert.ToBoolean(EstimatedSeconds < 60))
+                            if (File.Exists(GitDirectory + "\\" + file.Name))
                             {
-                                return EstimatedSeconds + " Second(s)";
+                                File.Delete(GitDirectory + "\\" + file.Name);
                             }
-                            else
+
+                            file.MoveTo(GitDirectory + "\\" + file.Name);
+                        }
+                        else
+                        {
+                            if (File.Exists(GitDirectory + "\\" + file.Name))
                             {
-                                if (EstimatedMinutesD < 60)
+                                File.Delete(GitDirectory + "\\" + file.Name);
+                            }
+
+                            file.CopyTo(GitDirectory + "\\" + file.Name);
+                        }
+
+                        StatusLabel.Text = "Status: Pushing " + file.Name;
+                        stopwatch.Start();
+                        if (ShowCommandCheckBox.Checked == false)
+                        {
+                            try
+                            {
+                                await RunCommandHidden("cd /d \"" + GitDirectory +
+                                                       "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+                        else
+                        {
+                            try
+                            {
+
+                                await RunCommand("cd /d \"" + GitDirectory +
+                                                 "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+
+                        stopwatch.Stop();
+                        try
+                        {
+                            int ToSeconds = Int32.Parse(stopwatch.ElapsedMilliseconds.ToString()) / 1000;
+                            int ToMinutes = ToSeconds / 60;
+                            int ToHour = ToMinutes / 60;
+
+                            string EstimatedMinutes()
+                            {
+                                int EstimatedMinutesD = ToMinutes * (progressBar1.Maximum - Files);
+                                int EstimatedSeconds = ToSeconds * (progressBar1.Maximum - Files);
+                                Console.WriteLine("Estimated Minutes: " + EstimatedMinutesD + " Estimated Seconds: " +
+                                                  EstimatedSeconds);
+                                if (Convert.ToBoolean(EstimatedSeconds < 60))
                                 {
-                                    return (EstimatedMinutesD / 60).ToString() + " Hour(s)\n(" + EstimatedMinutesD + " Minute(s))";
+                                    return EstimatedSeconds + " Second(s)";
                                 }
-
-                                return EstimatedMinutesD + " Minute(s)";
-                            }
-                        }
-                        EstimatedLabel.Text = "Estimated Time Left: " + EstimatedMinutes();
-                    }
-                    catch
-                    {
-                        EstimatedLabel.Text = "No estimation";
-                    }
-                    stopwatch.Reset();
-                    Files++;
-                    if (Files < progressBar1.Maximum)
-                    {
-                        progressBar1.Value = Files;
-                    }
-
-                    bool Internet = false;
-                    while(Internet == false)
-                    {
-                        try
-                        {
-                            StatusLabel.Text = "Status: Checking for internet";
-                            using (var client = new WebClient())
-                            {
-                                client.DownloadFileAsync(
-                                    new Uri(
-                                        "https://raw.githubusercontent.com/EpicGamesGun/GitHub-Large-Uploader/master/InternetCheck.txt"),
-                                    Environment.GetEnvironmentVariable("TEMP") + "\\GitHubInternetCheck.txt");
-                                while (client.IsBusy)
+                                else
                                 {
-                                    await Task.Delay(10);
+                                    if (EstimatedMinutesD < 60)
+                                    {
+                                        return (EstimatedMinutesD / 60).ToString() + " Hour(s)\n(" + EstimatedMinutesD +
+                                               " Minute(s))";
+                                    }
+
+                                    return EstimatedMinutesD + " Minute(s)";
                                 }
                             }
 
-                            if (File.ReadLines(Environment.GetEnvironmentVariable("TEMP") + "\\GitHubInternetCheck.txt")
-                                    .ElementAtOrDefault(0) == "true")
+                            EstimatedLabel.Text = "Estimated Time Left: " + EstimatedMinutes();
+                        }
+                        catch
+                        {
+                            EstimatedLabel.Text = "No estimation";
+                        }
+
+                        stopwatch.Reset();
+                        Files++;
+                        if (Files < progressBar1.Maximum)
+                        {
+                            progressBar1.Value = Files;
+                        }
+
+                        bool Internet = false;
+                        while (Internet == false)
+                        {
+                            try
                             {
-                                Internet = true;
+                                StatusLabel.Text = "Status: Checking for internet";
+                                using (var client = new WebClient())
+                                {
+                                    client.DownloadFileAsync(
+                                        new Uri(
+                                            "https://raw.githubusercontent.com/EpicGamesGun/GitHub-Large-Uploader/master/InternetCheck.txt"),
+                                        Environment.GetEnvironmentVariable("TEMP") + "\\GitHubInternetCheck.txt");
+                                    while (client.IsBusy)
+                                    {
+                                        await Task.Delay(10);
+                                    }
+                                }
+
+                                if (File.ReadLines(Environment.GetEnvironmentVariable("TEMP") +
+                                                   "\\GitHubInternetCheck.txt")
+                                        .ElementAtOrDefault(0) == "true")
+                                {
+                                    Internet = true;
+                                }
+                                else
+                                {
+                                    StatusLabel.Text = "Status: No Internet";
+                                }
+
+                                File.Delete(Environment.GetEnvironmentVariable("TEMP") + "\\GitHubInternetCheck.txt");
                             }
-                            else
+                            catch
                             {
                                 StatusLabel.Text = "Status: No Internet";
                             }
-                            File.Delete(Environment.GetEnvironmentVariable("TEMP") + "\\GitHubInternetCheck.txt");
-                        }
-                        catch
-                        {
-                            StatusLabel.Text = "Status: No Internet";
+
+                            ForceNextButton.Enabled = false;
                         }
 
-                        ForceNextButton.Enabled = false;
+                        if (QueueButtonPressed == true)
+                        {
+                            QueueButtonPressed = false;
+                            Queue = false;
+                            var Lines = 0;
+                            foreach (var readLine in File.ReadLines(UploadQueue))
+                            {
+                                Lines++;
+                            }
+                            var LinesToRead = 1;
+                            while (LinesToRead < Lines)
+                            {
+                                File.WriteAllText(UploadQueue + "TEMP", File.ReadLines(UploadQueue).ElementAtOrDefault(LinesToRead));
+                                LinesToRead++;
+                            }
+                            File.WriteAllText(UploadQueue, File.ReadAllText(UploadQueue + "TEMP"));
+                            Lines = 0;
+                            LinesToRead = 1;
+                        }
+                        else
+                        {
+                            Queue = true;
+                        }
+                        Internet = false;
                     }
-                    Internet = false;
                 }
 
                 UploadButton.Enabled = true;
@@ -222,6 +262,7 @@ namespace GitHub_Large_Uploader
             }
         }
 
+        private string UploadQueue = Environment.GetEnvironmentVariable("TEMP") + "\\UploadQueue.txt";
         private bool Exit = false;
         private bool Kill = false;
         public async Task RunCommandHidden(string Command)
@@ -318,6 +359,20 @@ namespace GitHub_Large_Uploader
         private async void ForceNextButton_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Kill = true;
+        }
+
+        private void QueueButton_Click(object sender, EventArgs e)
+        {
+            QueueButtonPressed = true;
+            if (!File.Exists(Environment.GetEnvironmentVariable("TEMP") + "\\UploadQueue.txt"))
+            {
+                File.WriteAllText(Environment.GetEnvironmentVariable("TEMP") + "\\UploadQueue.txt", textBox1.Text + ":" + textBox2.Text);
+            }
+            else
+            {
+                File.WriteAllText(Environment.GetEnvironmentVariable("TEMP") + "\\UploadQueue.txt",
+                    File.ReadAllText(Environment.GetEnvironmentVariable("TEMP") + "\\UploadQueue.txt") + "\n" + textBox1.Text + ":" + textBox2.Text);
+            }
         }
     }
 }

@@ -45,6 +45,7 @@
             this.EstimatedLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.QueueButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -211,12 +212,23 @@
             this.label3.TabIndex = 16;
             this.label3.Text = "Detector Included";
             // 
+            // QueueButton
+            // 
+            this.QueueButton.Location = new System.Drawing.Point(495, 138);
+            this.QueueButton.Name = "QueueButton";
+            this.QueueButton.Size = new System.Drawing.Size(132, 35);
+            this.QueueButton.TabIndex = 17;
+            this.QueueButton.Text = "Add to queue";
+            this.QueueButton.UseVisualStyleBackColor = true;
+            this.QueueButton.Click += new System.EventHandler(this.QueueButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(632, 274);
+            this.Controls.Add(this.QueueButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.EstimatedLabel);
@@ -265,6 +277,7 @@
         private System.Windows.Forms.Label EstimatedLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button QueueButton;
     }
 }
 
