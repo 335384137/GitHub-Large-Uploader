@@ -266,17 +266,24 @@ namespace GitHub_Large_Uploader
                             //{
                             //    File.WriteAllText(UploadQueue + "TEMP", "");
                             //}
-                            while (LinesToRead < Lines)
+                            if (!Convert.ToBoolean(File.ReadLines(UploadQueue).ElementAtOrDefault(1) == ""))
                             {
-                                File.AppendAllLines(UploadQueue + "TEMP", new [] {File.ReadLines(UploadQueue).ElementAtOrDefault(LinesToRead)});
-                                LinesToRead++;
-                            }
+                                while (LinesToRead < Lines)
+                                {
+                                    File.AppendAllLines(UploadQueue + "TEMP",
+                                        new[] {File.ReadLines(UploadQueue).ElementAtOrDefault(LinesToRead)});
+                                    LinesToRead++;
+                                }
 
-                            if (!File.Exists(UploadQueue + "TEMP"))
-                            {
-                                File.AppendAllText(UploadQueue + "TEMP", File.ReadLines(UploadQueue).ElementAtOrDefault(LinesToRead) );
+                                try
+                                {
+                                    File.WriteAllText(UploadQueue, File.ReadAllText(UploadQueue + "TEMP"));
+                                }
+                                catch
+                                {
+
+                                }
                             }
-                            File.WriteAllText(UploadQueue, File.ReadAllText(UploadQueue + "TEMP"));
                             Lines = 0;
                             LinesToRead = 1;
                             try
@@ -289,6 +296,15 @@ namespace GitHub_Large_Uploader
                                 Console.WriteLine(QUEU);
                                 throw;
                                 Queue = true;
+                            }
+
+                            try
+                            {
+                                File.ReadLines(UploadQueue).ElementAtOrDefault(1);
+                            }
+                            catch (Exception exception)
+                            {
+                                File.Delete(UploadQueue);
                             }
                         }
                     }
@@ -372,7 +388,6 @@ namespace GitHub_Large_Uploader
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Please select the source directory for the files that you want to upload");
             VistaFolderBrowserDialog dewBrowserDialog = new VistaFolderBrowserDialog();
             dewBrowserDialog.ShowDialog();
             if (Directory.Exists(dewBrowserDialog.SelectedPath))
@@ -398,7 +413,6 @@ namespace GitHub_Large_Uploader
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Now select your GitHub Directory");
             VistaFolderBrowserDialog dewDialog = new VistaFolderBrowserDialog();
             if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) +
                                  "\\Documents\\GitHub"))
