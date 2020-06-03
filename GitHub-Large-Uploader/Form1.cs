@@ -69,10 +69,10 @@ namespace GitHub_Large_Uploader
             }
             else
             {
-                QueuePanel.Visible = true;
-                File.WriteAllText(Environment.GetEnvironmentVariable("TEMP") + "\\ProcessingUpload.txt", textBox1.Text + "$" + textBox2.Text);
+                QueuePanel.Visible = true; 
                 while (Queue == false)
                 {
+                    File.WriteAllText(Environment.GetEnvironmentVariable("TEMP") + "\\ProcessingUpload.txt", textBox1.Text + "$" + textBox2.Text);
                     string GitDirectory = textBox2.Text;
                     var Source = new DirectoryInfo(textBox1.Text);
                     Source.Refresh();
@@ -86,6 +86,7 @@ namespace GitHub_Large_Uploader
                         PROCESS++;
                     }
 
+                    progressBar1.Value = 0;
                     progressBar1.Maximum = PROCESS;
                     foreach (var file in Source.GetFiles())
                     {
@@ -300,7 +301,13 @@ namespace GitHub_Large_Uploader
 
                             try
                             {
-                                File.ReadLines(UploadQueue).ElementAtOrDefault(1);
+                                if (File.ReadLines(UploadQueue).ElementAtOrDefault(0) == File
+                                        .ReadLines(
+                                            Environment.GetEnvironmentVariable("TEMP") + "\\ProcessingUpload.txt")
+                                        .ElementAtOrDefault(0))
+                                {
+                                    File.Delete(UploadQueue);
+                                }  
                             }
                             catch (Exception exception)
                             {
@@ -323,6 +330,7 @@ namespace GitHub_Large_Uploader
             SoundPlayer dew = new SoundPlayer(Resources.Finished_Upload);
             await Task.Factory.StartNew(() => { dew.PlaySync(); });
             StatusLabel.Text = "Status: Waiting for input";
+            EstimatedLabel.Text = "";
             progressBar1.Value = 0;
             SystemSounds.Beep.Play();
             if (ShutdownCheckbox.Checked == true)
