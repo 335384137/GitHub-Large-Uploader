@@ -74,6 +74,7 @@ namespace GitHub_Large_Uploader
                 {
                     string GitDirectory = textBox2.Text;
                     DirectoryInfo Source = new DirectoryInfo(textBox1.Text);
+                    Source.Refresh();
                     var Files = 0;
                     ExitButton.Enabled = false;
                     UploadButton.Enabled = false;
@@ -233,6 +234,10 @@ namespace GitHub_Large_Uploader
                                 Lines++;
                             }
 
+                            if (!File.Exists(UploadQueue + "TEMP"))
+                            {
+                                File.WriteAllText(UploadQueue + "TEMP", "");
+                            }
                             var LinesToRead = 1;
                             while (LinesToRead < Lines)
                             {
