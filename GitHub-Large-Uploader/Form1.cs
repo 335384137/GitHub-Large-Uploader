@@ -208,43 +208,42 @@ namespace GitHub_Large_Uploader
 
                             ForceNextButton.Enabled = false;
                         }
-
-                        if (QueueButtonPressed == true)
-                        {
-                            QueueButtonPressed = false;
-                            Queue = false;
-                            var Lines = 0;
-                            if (File.ReadLines(UploadQueue).ElementAtOrDefault(0) == "")
-                            {
-                                Queue = true;
-                            }
-                            else
-                            {
-                                foreach (var readLine in File.ReadLines(UploadQueue))
-                                {
-                                    Lines++;
-                                }
-
-                                var LinesToRead = 1;
-                                while (LinesToRead < Lines)
-                                {
-                                    File.WriteAllText(UploadQueue + "TEMP",
-                                        File.ReadLines(UploadQueue).ElementAtOrDefault(LinesToRead));
-                                    LinesToRead++;
-                                }
-
-                                File.WriteAllText(UploadQueue, File.ReadAllText(UploadQueue + "TEMP"));
-                                Lines = 0;
-                                LinesToRead = 1;
-                                textBox1.Text = File.ReadLines(UploadQueue).ElementAtOrDefault(0).Split(':')[0].Trim();
-                                textBox2.Text = File.ReadLines(UploadQueue).ElementAtOrDefault(0).Split(':')[1].Trim();
-                            }
-                        }
-                        else
+                        Internet = false;
+                    }
+                    if (QueueButtonPressed == true)
+                    {
+                        QueueButtonPressed = false;
+                        Queue = false;
+                        var Lines = 0;
+                        if (File.ReadLines(UploadQueue).ElementAtOrDefault(0) == "")
                         {
                             Queue = true;
                         }
-                        Internet = false;
+                        else
+                        {
+                            foreach (var readLine in File.ReadLines(UploadQueue))
+                            {
+                                Lines++;
+                            }
+
+                            var LinesToRead = 1;
+                            while (LinesToRead < Lines)
+                            {
+                                File.WriteAllText(UploadQueue + "TEMP",
+                                    File.ReadLines(UploadQueue).ElementAtOrDefault(LinesToRead));
+                                LinesToRead++;
+                            }
+
+                            File.WriteAllText(UploadQueue, File.ReadAllText(UploadQueue + "TEMP"));
+                            Lines = 0;
+                            LinesToRead = 1;
+                            textBox1.Text = File.ReadLines(UploadQueue).ElementAtOrDefault(0).Split(':')[0].Trim();
+                            textBox2.Text = File.ReadLines(UploadQueue).ElementAtOrDefault(0).Split(':')[1].Trim();
+                        }
+                    }
+                    else
+                    {
+                        Queue = true;
                     }
                 }
 
