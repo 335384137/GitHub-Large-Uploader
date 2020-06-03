@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GitHub_Large_Uploader.Properties;
 using Ookii.Dialogs.Wpf;
+using Exception = System.Exception;
 
 namespace GitHub_Large_Uploader
 {
@@ -73,31 +74,47 @@ namespace GitHub_Large_Uploader
                 while (Queue == false)
                 {
                     string GitDirectory = textBox2.Text;
-                    DirectoryInfo Source = new DirectoryInfo(textBox1.Text);
+                    var Source = new DirectoryInfo(textBox1.Text);
                     Source.Refresh();
                     var Files = 0;
+                    Console.WriteLine(Source);
                     ExitButton.Enabled = false;
                     UploadButton.Enabled = false;
+                    var PROCESS = 0;
+                    foreach (var fileInfo in Source.GetFiles())
+                    {
+                        PROCESS++;
+                    }
+
+                    progressBar1.Maximum = PROCESS;
                     foreach (var file in Source.GetFiles())
                     {
                         ForceNextButton.Enabled = true;
-                        if (CopyFilesCheckBox.Checked == false)
+                        try
                         {
-                            if (File.Exists(GitDirectory + "\\" + file.Name))
+                            if (CopyFilesCheckBox.Checked == false)
                             {
-                                File.Delete(GitDirectory + "\\" + file.Name);
-                            }
+                                if (File.Exists(GitDirectory + "\\" + file.Name))
+                                {
+                                    File.Delete(GitDirectory + "\\" + file.Name);
+                                }
 
-                            file.MoveTo(GitDirectory + "\\" + file.Name);
+                                file.MoveTo(GitDirectory + "\\" + file.Name);
+                            }
+                            else
+                            {
+                                if (File.Exists(GitDirectory + "\\" + file.Name))
+                                {
+                                    File.Delete(GitDirectory + "\\" + file.Name);
+                                }
+
+                                file.CopyTo(GitDirectory + "\\" + file.Name);
+                            }
                         }
-                        else
+                        catch (Exception huidew)
                         {
-                            if (File.Exists(GitDirectory + "\\" + file.Name))
-                            {
-                                File.Delete(GitDirectory + "\\" + file.Name);
-                            }
-
-                            file.CopyTo(GitDirectory + "\\" + file.Name);
+                            Console.WriteLine(huidew);
+                            throw;
                         }
 
                         StatusLabel.Text = "Status: Pushing " + file.Name;
@@ -155,7 +172,7 @@ namespace GitHub_Large_Uploader
 
                                     if (EstimatedMinutesD == 0)
                                     {
-                                        return EstimatedSeconds + "Second(s)";
+                                        return EstimatedSeconds + " Second(s)";
                                     }
                                     else
                                     {
@@ -218,14 +235,24 @@ namespace GitHub_Large_Uploader
                         }
                         Internet = false;
                     }
+
+                    if (File.Exists(UploadQueue))
+                    {
+                        QueueButtonPressed = true;
+                    }
                     if (QueueButtonPressed == true)
                     {
+                        if (File.Exists(UploadQueue + "TEMP"))
+                        {
+                            File.Delete(UploadQueue + "TEMP");
+                        }
                         QueueButtonPressed = false;
                         Queue = false;
                         var Lines = 0;
                         if (File.ReadLines(UploadQueue).ElementAtOrDefault(0) == "")
                         {
                             Queue = true;
+                            File.Delete(UploadQueue);
                         }
                         else
                         {
@@ -234,22 +261,35 @@ namespace GitHub_Large_Uploader
                                 Lines++;
                             }
 
-                            if (!File.Exists(UploadQueue + "TEMP"))
-                            {
-                                File.WriteAllText(UploadQueue + "TEMP", "");
-                            }
                             var LinesToRead = 1;
+                            //if (!File.Exists(UploadQueue + "TEMP"))
+                            //{
+                            //    File.WriteAllText(UploadQueue + "TEMP", "");
+                            //}
                             while (LinesToRead < Lines)
                             {
-                                File.WriteAllText(UploadQueue + "TEMP",File.ReadAllText(UploadQueue + "TEMP") + "\n" + File.ReadLines(UploadQueue).ElementAtOrDefault(LinesToRead));
+                                File.AppendAllLines(UploadQueue + "TEMP", new [] {File.ReadLines(UploadQueue).ElementAtOrDefault(LinesToRead)});
                                 LinesToRead++;
                             }
 
+                            if (!File.Exists(UploadQueue + "TEMP"))
+                            {
+                                File.AppendAllText(UploadQueue + "TEMP", File.ReadLines(UploadQueue).ElementAtOrDefault(LinesToRead) );
+                            }
                             File.WriteAllText(UploadQueue, File.ReadAllText(UploadQueue + "TEMP"));
                             Lines = 0;
                             LinesToRead = 1;
-                            textBox1.Text = File.ReadLines(UploadQueue).ElementAtOrDefault(0).Split('$')[0].Trim();
-                            textBox2.Text = File.ReadLines(UploadQueue).ElementAtOrDefault(0).Split('$')[1].Trim();
+                            try
+                            {
+                                textBox1.Text = File.ReadLines(UploadQueue).ElementAtOrDefault(0).Split('$')[0].Trim();
+                                textBox2.Text = File.ReadLines(UploadQueue).ElementAtOrDefault(0).Split('$')[1].Trim();
+                            }
+                            catch (Exception QUEU)
+                            {
+                                Console.WriteLine(QUEU);
+                                throw;
+                                Queue = true;
+                            }
                         }
                     }
                     else
@@ -258,6 +298,7 @@ namespace GitHub_Large_Uploader
                     }
                 }
 
+                Queue = false;
                 UploadButton.Enabled = true;
                 ExitButton.Enabled = true;
             }
@@ -412,6 +453,11 @@ namespace GitHub_Large_Uploader
             {
                 MessageBox.Show("No Queue");
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            QueueButtonPressed = true;
         }
     }
 }

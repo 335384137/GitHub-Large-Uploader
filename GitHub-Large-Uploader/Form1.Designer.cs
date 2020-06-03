@@ -48,6 +48,7 @@
             this.QueueButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.QueuePanel = new System.Windows.Forms.Panel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.QueuePanel.SuspendLayout();
             this.SuspendLayout();
@@ -244,12 +245,24 @@
             this.QueuePanel.Size = new System.Drawing.Size(106, 64);
             this.QueuePanel.TabIndex = 19;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(556, 256);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(165, 17);
+            this.linkLabel1.TabIndex = 20;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Process Previous Queue";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(737, 326);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.QueuePanel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox1);
@@ -303,6 +316,7 @@
         private System.Windows.Forms.Button QueueButton;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel QueuePanel;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 
