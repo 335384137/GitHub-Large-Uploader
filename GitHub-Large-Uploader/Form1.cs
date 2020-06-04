@@ -155,7 +155,12 @@ namespace GitHub_Large_Uploader
                             int ToSeconds = Int32.Parse(stopwatch.ElapsedMilliseconds.ToString()) / 1000;
                             int ToMinutes = ToSeconds / 60;
                             int ToHour = ToMinutes / 60;
-
+                            if (ToSeconds < 3)
+                            {
+                                ShowCommandCheckBox.Checked = true;
+                                SoundPlayer netgeared = new SoundPlayer(Resources.NetGeared);
+                                netgeared.Play();
+                            }
                             string GetTime()
                             {
                                 try
