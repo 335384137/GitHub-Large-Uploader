@@ -174,7 +174,7 @@ namespace GitHub_Large_Uploader
                                         Return = ToHour.ToString() + "Hour(s)";
                                     }
 
-                                    return Return + " Per file";
+                                    return "Estimated " + Return + " Per file";
                                 }
                                 catch
                                 {
