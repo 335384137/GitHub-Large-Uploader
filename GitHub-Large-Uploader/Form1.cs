@@ -69,6 +69,8 @@ namespace GitHub_Large_Uploader
             }
             else
             {
+                SoundPlayer uploadPlayer = new SoundPlayer(Resources.Uploading);
+                uploadPlayer.Play();
                 QueuePanel.Visible = true; 
                 while (Queue == false)
                 {
@@ -118,7 +120,7 @@ namespace GitHub_Large_Uploader
                             throw;
                         }
 
-                        StatusLabel.Text = "Status: Pushing " + file.Name;
+                        StatusLabel.Text = "Status: Pushing " + file.Name + "\n(" + progressBar1.Value + "/" + progressBar1.Maximum + ") Files Uploaded";
                         stopwatch.Start();
                         if (ShowCommandCheckBox.Checked == false)
                         {
@@ -149,10 +151,38 @@ namespace GitHub_Large_Uploader
                         stopwatch.Stop();
                         try
                         {
+                            
                             int ToSeconds = Int32.Parse(stopwatch.ElapsedMilliseconds.ToString()) / 1000;
                             int ToMinutes = ToSeconds / 60;
                             int ToHour = ToMinutes / 60;
 
+                            string GetTime()
+                            {
+                                try
+                                {
+                                    string Return = String.Empty;
+                                    if (Convert.ToBoolean(ToSeconds < 60))
+                                    {
+                                        Return = ToSeconds.ToString() + "Second(s)";
+                                    }
+                                    else if (ToSeconds > 59 && ToMinutes < 60)
+                                    {
+                                        Return = ToMinutes.ToString() + "Minute(s)";
+                                    }
+                                    else if (ToMinutes > 59)
+                                    {
+                                        Return = ToHour.ToString() + "Hour(s)";
+                                    }
+
+                                    return Return + " Per file";
+                                }
+                                catch
+                                {
+                                    return "";
+                                }
+                            }
+
+                            StatusLabel.Text = StatusLabel.Text + "\n" + GetTime();
                             string EstimatedMinutes()
                             {
                                 int EstimatedMinutesD = ToMinutes * (progressBar1.Maximum - Files);

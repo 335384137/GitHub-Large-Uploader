@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="download_0kD_icon.ico" />
+    <None Include="Resources\Uploading.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

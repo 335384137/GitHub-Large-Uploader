@@ -182,7 +182,7 @@
             // ForceNextButton
             // 
             this.ForceNextButton.AutoSize = true;
-            this.ForceNextButton.Location = new System.Drawing.Point(58, 156);
+            this.ForceNextButton.Location = new System.Drawing.Point(54, 172);
             this.ForceNextButton.Name = "ForceNextButton";
             this.ForceNextButton.Size = new System.Drawing.Size(76, 17);
             this.ForceNextButton.TabIndex = 13;
