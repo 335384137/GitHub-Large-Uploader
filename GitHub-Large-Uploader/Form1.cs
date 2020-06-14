@@ -50,6 +50,18 @@ namespace GitHub_Large_Uploader
 
         private bool Queue = false;
         private bool QueueButtonPressed = false;
+
+        private async void PlaySound(Stream location)
+        {
+            SoundPlayer dew = new SoundPlayer(location);
+            dew.Play();
+        }
+
+        private async Task PlaySoundSync(Stream location)
+        {
+            SoundPlayer dew = new SoundPlayer(location);
+            await Task.Factory.StartNew(() => { dew.PlaySync(); });
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             QueuePanel.Visible = false;
@@ -69,8 +81,9 @@ namespace GitHub_Large_Uploader
             }
             else
             {
-                SoundPlayer uploadPlayer = new SoundPlayer(Resources.Uploading);
-                uploadPlayer.Play();
+                await PlaySoundSync(Resources.Uploading);
+                await PlaySoundSync(Resources.RENFE_Announcement_Chime);
+                await PlaySoundSync(Resources.InternetStop);
                 QueuePanel.Visible = true; 
                 while (Queue == false)
                 {

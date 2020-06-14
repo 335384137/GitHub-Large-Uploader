@@ -82,9 +82,27 @@ namespace GitHub_Large_Uploader.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream InternetStop {
+            get {
+                return ResourceManager.GetStream("InternetStop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream NetGeared {
             get {
                 return ResourceManager.GetStream("NetGeared", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream RENFE_Announcement_Chime {
+            get {
+                return ResourceManager.GetStream("RENFE_Announcement_Chime", resourceCulture);
             }
         }
         
