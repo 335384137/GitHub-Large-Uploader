@@ -136,6 +136,12 @@
   <data name="Uploading" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Uploading.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="AirportStation_Announcement_Chime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AirportStation Announcement Chime.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="InternetRestored" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InternetRestored.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="InternetStop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\InternetStop.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

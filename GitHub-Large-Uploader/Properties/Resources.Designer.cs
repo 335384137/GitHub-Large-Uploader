@@ -61,6 +61,15 @@ namespace GitHub_Large_Uploader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream AirportStation_Announcement_Chime {
+            get {
+                return ResourceManager.GetStream("AirportStation_Announcement_Chime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Annotation_2020_06_02_223343 {
@@ -76,6 +85,15 @@ namespace GitHub_Large_Uploader.Properties {
         internal static System.IO.UnmanagedMemoryStream Finished_Upload {
             get {
                 return ResourceManager.GetStream("Finished_Upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream InternetRestored {
+            get {
+                return ResourceManager.GetStream("InternetRestored", resourceCulture);
             }
         }
         

@@ -105,6 +105,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="download_0kD_icon.ico" />
+    <None Include="Resources\InternetRestored.wav" />
+    <None Include="Resources\AirportStation Announcement Chime.wav" />
     <None Include="Resources\InternetStop.wav" />
     <None Include="Resources\RENFE Announcement Chime.wav" />
     <None Include="Resources\NetGeared.wav" />

@@ -375,8 +375,10 @@ namespace GitHub_Large_Uploader
             }
 
             QueuePanel.Visible = false;
+            await PlaySoundSync(Resources.AirportStation_Announcement_Chime);
             SoundPlayer dew = new SoundPlayer(Resources.Finished_Upload);
             await Task.Factory.StartNew(() => { dew.PlaySync(); });
+            await PlaySoundSync(Resources.InternetRestored);
             StatusLabel.Text = "Status: Waiting for input";
             EstimatedLabel.Text = "";
             progressBar1.Value = 0;
