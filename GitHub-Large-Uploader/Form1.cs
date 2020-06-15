@@ -81,8 +81,8 @@ namespace GitHub_Large_Uploader
             }
             else
             {
+                await PlaySoundSync(Resources.AnnouncementChime);
                 await PlaySoundSync(Resources.Uploading);
-                await PlaySoundSync(Resources.RENFE_Announcement_Chime);
                 await PlaySoundSync(Resources.InternetStop);
                 QueuePanel.Visible = true; 
                 while (Queue == false)
@@ -375,7 +375,7 @@ namespace GitHub_Large_Uploader
             }
 
             QueuePanel.Visible = false;
-            await PlaySoundSync(Resources.AirportStation_Announcement_Chime);
+            await PlaySoundSync(Resources.AnnouncementChime);
             SoundPlayer dew = new SoundPlayer(Resources.Finished_Upload);
             await Task.Factory.StartNew(() => { dew.PlaySync(); });
             await PlaySoundSync(Resources.InternetRestored);

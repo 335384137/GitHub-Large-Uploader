@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="download_0kD_icon.ico" />
+    <None Include="Resources\AnnouncementChime.wav" />
     <None Include="Resources\InternetRestored.wav" />
     <None Include="Resources\AirportStation Announcement Chime.wav" />
     <None Include="Resources\InternetStop.wav" />

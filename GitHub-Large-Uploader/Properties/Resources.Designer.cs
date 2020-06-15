@@ -82,6 +82,15 @@ namespace GitHub_Large_Uploader.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream AnnouncementChime {
+            get {
+                return ResourceManager.GetStream("AnnouncementChime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream Finished_Upload {
             get {
                 return ResourceManager.GetStream("Finished_Upload", resourceCulture);
