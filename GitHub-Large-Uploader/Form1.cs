@@ -81,6 +81,7 @@ namespace GitHub_Large_Uploader
             }
             else
             {
+                UploadButton.Enabled = false;
                 await PlaySoundSync(Resources.AnnouncementChime);
                 await PlaySoundSync(Resources.Uploading);
                 await PlaySoundSync(Resources.InternetStop);
