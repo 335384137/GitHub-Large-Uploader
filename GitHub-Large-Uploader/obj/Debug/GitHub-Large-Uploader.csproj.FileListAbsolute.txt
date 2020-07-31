@@ -29,3 +29,16 @@ C:\Users\cntow\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\
 C:\Users\cntow\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\bin\Debug\Ookii.Dialogs.Wpf.dll
 C:\Users\cntow\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\bin\Debug\Ookii.Dialogs.Wpf.xml
 C:\Users\cntow\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub-Large-Uploader.csproj.CopyComplete
+C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub-Large-Uploader.csprojAssemblyReference.cache
+C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub_Large_Uploader.Form1.resources
+C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub_Large_Uploader.Properties.Resources.resources
+C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub-Large-Uploader.csproj.GenerateResource.cache
+C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub-Large-Uploader.csproj.CoreCompileInputs.cache
+C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub-Large-Uploader.exe
+C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub-Large-Uploader.pdb
+C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\bin\Debug\GitHub-Large-Uploader.exe.config
+C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\bin\Debug\GitHub-Large-Uploader.exe
+C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\bin\Debug\GitHub-Large-Uploader.pdb
+C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\bin\Debug\Ookii.Dialogs.Wpf.dll
+C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\bin\Debug\Ookii.Dialogs.Wpf.xml
+C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub-Large-Uploader.csproj.CopyComplete

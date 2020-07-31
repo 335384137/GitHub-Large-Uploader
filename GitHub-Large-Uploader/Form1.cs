@@ -166,9 +166,9 @@ namespace GitHub_Large_Uploader
                         try
                         {
                             
-                            int ToSeconds = Int32.Parse(stopwatch.ElapsedMilliseconds.ToString()) / 1000;
-                            int ToMinutes = ToSeconds / 60;
-                            int ToHour = ToMinutes / 60;
+                            Double ToSeconds = Int32.Parse(stopwatch.ElapsedMilliseconds.ToString()) / 1000d;
+                            Double ToMinutes = ToSeconds / 60d;
+                            Double ToHour = ToMinutes / 60d;
                             if (ToSeconds < 3)
                             {
                                 ShowCommandCheckBox.Checked = true;
@@ -180,17 +180,17 @@ namespace GitHub_Large_Uploader
                                 try
                                 {
                                     string Return = String.Empty;
-                                    if (Convert.ToBoolean(ToSeconds < 60))
+                                    if (Convert.ToBoolean(ToSeconds < 60d))
                                     {
-                                        Return = ToSeconds.ToString() + "Second(s)";
+                                        Return = ToSeconds.ToString("0.00") + "Second(s)";
                                     }
-                                    else if (ToSeconds > 59 && ToMinutes < 60)
+                                    else if (ToSeconds > 59d && ToMinutes < 60d)
                                     {
-                                        Return = ToMinutes.ToString() + "Minute(s)";
+                                        Return = ToMinutes.ToString("0.00") + "Minute(s)";
                                     }
-                                    else if (ToMinutes > 59)
+                                    else if (ToMinutes > 59d)
                                     {
-                                        Return = ToHour.ToString() + "Hour(s)";
+                                        Return = ToHour.ToString("0.00") + "Hour(s)";
                                     }
 
                                     return "Estimated " + Return + " Per file";
@@ -204,8 +204,8 @@ namespace GitHub_Large_Uploader
                             StatusLabel.Text = StatusLabel.Text + "\n" + GetTime();
                             string EstimatedMinutes()
                             {
-                                int EstimatedMinutesD = ToMinutes * (progressBar1.Maximum - Files);
-                                int EstimatedSeconds = ToSeconds * (progressBar1.Maximum - Files);
+                                Double EstimatedMinutesD = ToMinutes * (progressBar1.Maximum - Files);
+                                Double EstimatedSeconds = ToSeconds * (progressBar1.Maximum - Files);
                                 Console.WriteLine("Estimated Minutes: " + EstimatedMinutesD + " Estimated Seconds: " +
                                                   EstimatedSeconds);
                                 if (Convert.ToBoolean(EstimatedSeconds < 60))
