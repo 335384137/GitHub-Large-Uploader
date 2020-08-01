@@ -48,20 +48,20 @@
             this.QueueButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.QueuePanel = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.GitHubDirectoryQueue = new System.Windows.Forms.TextBox();
+            this.SourceDirectoryQueue = new System.Windows.Forms.TextBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.SettingsTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.NumberOfFilesToUploadTextBox = new System.Windows.Forms.TextBox();
-            this.SmartModeCheckBox = new System.Windows.Forms.CheckBox();
-            this.SourceDirectoryQueue = new System.Windows.Forms.TextBox();
-            this.GitHubDirectoryQueue = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.SkipErrorsTextBox = new System.Windows.Forms.CheckBox();
+            this.SmartModeCheckBox = new System.Windows.Forms.CheckBox();
+            this.NumberOfFilesToUploadTextBox = new System.Windows.Forms.TextBox();
             this.SizeToUploadLabel = new System.Windows.Forms.Label();
             this.ContinueButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -214,7 +214,7 @@
             // EstimatedLabel
             // 
             this.EstimatedLabel.AutoSize = true;
-            this.EstimatedLabel.Location = new System.Drawing.Point(567, 138);
+            this.EstimatedLabel.Location = new System.Drawing.Point(474, 138);
             this.EstimatedLabel.Name = "EstimatedLabel";
             this.EstimatedLabel.Size = new System.Drawing.Size(0, 17);
             this.EstimatedLabel.TabIndex = 14;
@@ -271,6 +271,58 @@
             this.QueuePanel.Name = "QueuePanel";
             this.QueuePanel.Size = new System.Drawing.Size(551, 77);
             this.QueuePanel.TabIndex = 19;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(4, 36);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(113, 17);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "GitHub Directory";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(114, 17);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Source Directory";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(349, 35);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(74, 26);
+            this.button5.TabIndex = 22;
+            this.button5.Text = "Browse";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(349, 7);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(74, 26);
+            this.button4.TabIndex = 21;
+            this.button4.Text = "Browse";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // GitHubDirectoryQueue
+            // 
+            this.GitHubDirectoryQueue.Location = new System.Drawing.Point(123, 34);
+            this.GitHubDirectoryQueue.Name = "GitHubDirectoryQueue";
+            this.GitHubDirectoryQueue.Size = new System.Drawing.Size(220, 23);
+            this.GitHubDirectoryQueue.TabIndex = 20;
+            // 
+            // SourceDirectoryQueue
+            // 
+            this.SourceDirectoryQueue.Location = new System.Drawing.Point(123, 10);
+            this.SourceDirectoryQueue.Name = "SourceDirectoryQueue";
+            this.SourceDirectoryQueue.Size = new System.Drawing.Size(220, 23);
+            this.SourceDirectoryQueue.TabIndex = 19;
             // 
             // linkLabel1
             // 
@@ -330,13 +382,15 @@
             this.tabPage2.Text = "Performance & Queue";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // NumberOfFilesToUploadTextBox
+            // SkipErrorsTextBox
             // 
-            this.NumberOfFilesToUploadTextBox.Location = new System.Drawing.Point(254, 3);
-            this.NumberOfFilesToUploadTextBox.Name = "NumberOfFilesToUploadTextBox";
-            this.NumberOfFilesToUploadTextBox.Size = new System.Drawing.Size(50, 23);
-            this.NumberOfFilesToUploadTextBox.TabIndex = 22;
-            this.NumberOfFilesToUploadTextBox.Text = "1";
+            this.SkipErrorsTextBox.AutoSize = true;
+            this.SkipErrorsTextBox.Location = new System.Drawing.Point(429, 5);
+            this.SkipErrorsTextBox.Name = "SkipErrorsTextBox";
+            this.SkipErrorsTextBox.Size = new System.Drawing.Size(97, 21);
+            this.SkipErrorsTextBox.TabIndex = 24;
+            this.SkipErrorsTextBox.Text = "Skip Errors";
+            this.SkipErrorsTextBox.UseVisualStyleBackColor = true;
             // 
             // SmartModeCheckBox
             // 
@@ -349,67 +403,13 @@
             this.SmartModeCheckBox.UseVisualStyleBackColor = true;
             this.SmartModeCheckBox.CheckedChanged += new System.EventHandler(this.SmartModeCheckBox_CheckedChanged);
             // 
-            // SourceDirectoryQueue
+            // NumberOfFilesToUploadTextBox
             // 
-            this.SourceDirectoryQueue.Location = new System.Drawing.Point(123, 10);
-            this.SourceDirectoryQueue.Name = "SourceDirectoryQueue";
-            this.SourceDirectoryQueue.Size = new System.Drawing.Size(220, 23);
-            this.SourceDirectoryQueue.TabIndex = 19;
-            // 
-            // GitHubDirectoryQueue
-            // 
-            this.GitHubDirectoryQueue.Location = new System.Drawing.Point(123, 34);
-            this.GitHubDirectoryQueue.Name = "GitHubDirectoryQueue";
-            this.GitHubDirectoryQueue.Size = new System.Drawing.Size(220, 23);
-            this.GitHubDirectoryQueue.TabIndex = 20;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(349, 7);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(74, 26);
-            this.button4.TabIndex = 21;
-            this.button4.Text = "Browse";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(349, 35);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(74, 26);
-            this.button5.TabIndex = 22;
-            this.button5.Text = "Browse";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 10);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(114, 17);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Source Directory";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 36);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(113, 17);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "GitHub Directory";
-            // 
-            // SkipErrorsTextBox
-            // 
-            this.SkipErrorsTextBox.AutoSize = true;
-            this.SkipErrorsTextBox.Location = new System.Drawing.Point(429, 5);
-            this.SkipErrorsTextBox.Name = "SkipErrorsTextBox";
-            this.SkipErrorsTextBox.Size = new System.Drawing.Size(97, 21);
-            this.SkipErrorsTextBox.TabIndex = 24;
-            this.SkipErrorsTextBox.Text = "Skip Errors";
-            this.SkipErrorsTextBox.UseVisualStyleBackColor = true;
+            this.NumberOfFilesToUploadTextBox.Location = new System.Drawing.Point(254, 3);
+            this.NumberOfFilesToUploadTextBox.Name = "NumberOfFilesToUploadTextBox";
+            this.NumberOfFilesToUploadTextBox.Size = new System.Drawing.Size(50, 23);
+            this.NumberOfFilesToUploadTextBox.TabIndex = 22;
+            this.NumberOfFilesToUploadTextBox.Text = "1";
             // 
             // SizeToUploadLabel
             // 
