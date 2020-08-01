@@ -64,11 +64,19 @@
             this.NumberOfFilesToUploadTextBox = new System.Windows.Forms.TextBox();
             this.SizeToUploadLabel = new System.Windows.Forms.Label();
             this.ContinueButton = new System.Windows.Forms.Button();
+            this.AlwaysOnTopCheckBox = new System.Windows.Forms.CheckBox();
+            this.UIColorButton = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.HistoryListBox = new System.Windows.Forms.ListBox();
+            this.RefreshHistoryButton = new System.Windows.Forms.LinkLabel();
+            this.DisplayHistoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.QueuePanel.SuspendLayout();
             this.SettingsTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // UploadButton
@@ -348,6 +356,7 @@
             // 
             this.SettingsTabControl.Controls.Add(this.tabPage1);
             this.SettingsTabControl.Controls.Add(this.tabPage2);
+            this.SettingsTabControl.Controls.Add(this.tabPage3);
             this.SettingsTabControl.Location = new System.Drawing.Point(12, 172);
             this.SettingsTabControl.Name = "SettingsTabControl";
             this.SettingsTabControl.SelectedIndex = 0;
@@ -356,6 +365,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.UIColorButton);
+            this.tabPage1.Controls.Add(this.AlwaysOnTopCheckBox);
             this.tabPage1.Controls.Add(this.ShowCommandCheckBox);
             this.tabPage1.Controls.Add(this.CopyFilesCheckBox);
             this.tabPage1.Controls.Add(this.ShutdownCheckbox);
@@ -410,6 +421,7 @@
             this.NumberOfFilesToUploadTextBox.Size = new System.Drawing.Size(50, 23);
             this.NumberOfFilesToUploadTextBox.TabIndex = 22;
             this.NumberOfFilesToUploadTextBox.Text = "1";
+            this.NumberOfFilesToUploadTextBox.TextChanged += new System.EventHandler(this.NumberOfFilesToUploadTextBox_TextChanged);
             // 
             // SizeToUploadLabel
             // 
@@ -429,6 +441,82 @@
             this.ContinueButton.Text = "Continue";
             this.ContinueButton.UseVisualStyleBackColor = true;
             this.ContinueButton.Click += new System.EventHandler(this.ContinueButton_Click);
+            // 
+            // AlwaysOnTopCheckBox
+            // 
+            this.AlwaysOnTopCheckBox.AutoSize = true;
+            this.AlwaysOnTopCheckBox.Location = new System.Drawing.Point(253, 32);
+            this.AlwaysOnTopCheckBox.Name = "AlwaysOnTopCheckBox";
+            this.AlwaysOnTopCheckBox.Size = new System.Drawing.Size(114, 21);
+            this.AlwaysOnTopCheckBox.TabIndex = 13;
+            this.AlwaysOnTopCheckBox.Text = "Always on top";
+            this.AlwaysOnTopCheckBox.UseVisualStyleBackColor = true;
+            this.AlwaysOnTopCheckBox.CheckedChanged += new System.EventHandler(this.AlwaysOnTopCheckBox_CheckedChanged);
+            // 
+            // UIColorButton
+            // 
+            this.UIColorButton.Location = new System.Drawing.Point(435, 3);
+            this.UIColorButton.Name = "UIColorButton";
+            this.UIColorButton.Size = new System.Drawing.Size(125, 31);
+            this.UIColorButton.TabIndex = 14;
+            this.UIColorButton.Text = "Change UI Color";
+            this.UIColorButton.UseVisualStyleBackColor = true;
+            this.UIColorButton.Click += new System.EventHandler(this.UIColorButton_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.linkLabel2);
+            this.tabPage3.Controls.Add(this.DisplayHistoryTextBox);
+            this.tabPage3.Controls.Add(this.RefreshHistoryButton);
+            this.tabPage3.Controls.Add(this.HistoryListBox);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(566, 112);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "History";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // HistoryListBox
+            // 
+            this.HistoryListBox.FormattingEnabled = true;
+            this.HistoryListBox.ItemHeight = 16;
+            this.HistoryListBox.Location = new System.Drawing.Point(10, 10);
+            this.HistoryListBox.Name = "HistoryListBox";
+            this.HistoryListBox.Size = new System.Drawing.Size(299, 68);
+            this.HistoryListBox.TabIndex = 0;
+            // 
+            // RefreshHistoryButton
+            // 
+            this.RefreshHistoryButton.AutoSize = true;
+            this.RefreshHistoryButton.Location = new System.Drawing.Point(251, 89);
+            this.RefreshHistoryButton.Name = "RefreshHistoryButton";
+            this.RefreshHistoryButton.Size = new System.Drawing.Size(58, 17);
+            this.RefreshHistoryButton.TabIndex = 1;
+            this.RefreshHistoryButton.TabStop = true;
+            this.RefreshHistoryButton.Text = "Refresh";
+            this.RefreshHistoryButton.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RefreshHistoryButton_LinkClicked);
+            // 
+            // DisplayHistoryTextBox
+            // 
+            this.DisplayHistoryTextBox.Location = new System.Drawing.Point(315, 10);
+            this.DisplayHistoryTextBox.Name = "DisplayHistoryTextBox";
+            this.DisplayHistoryTextBox.ReadOnly = true;
+            this.DisplayHistoryTextBox.Size = new System.Drawing.Size(241, 67);
+            this.DisplayHistoryTextBox.TabIndex = 2;
+            this.DisplayHistoryTextBox.Text = "";
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(464, 89);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(96, 17);
+            this.linkLabel2.TabIndex = 3;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "Export History";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // Form1
             // 
@@ -468,6 +556,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -511,6 +601,13 @@
         private System.Windows.Forms.CheckBox SkipErrorsTextBox;
         private System.Windows.Forms.Label SizeToUploadLabel;
         private System.Windows.Forms.Button ContinueButton;
+        private System.Windows.Forms.CheckBox AlwaysOnTopCheckBox;
+        private System.Windows.Forms.Button UIColorButton;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.LinkLabel RefreshHistoryButton;
+        private System.Windows.Forms.ListBox HistoryListBox;
+        private System.Windows.Forms.RichTextBox DisplayHistoryTextBox;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }
 

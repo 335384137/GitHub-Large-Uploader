@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Media;
 using System.Net;
@@ -23,6 +24,47 @@ namespace GitHub_Large_Uploader
         public Form1()
         {
             InitializeComponent();
+            HistoryListBox.MouseDoubleClick += HistoryListBox_MouseDoubleClick;
+        }
+
+        private void HistoryListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            string HistoryDirectory = Environment.GetEnvironmentVariable("APPDATA") + "\\UploadHistory";
+            if (HistoryListBox.SelectedItem != null)
+            {
+                string SourceDirectory = "Source: " + File.ReadLines(HistoryDirectory + "\\" + HistoryListBox.SelectedItem + ".txt")
+                    .ElementAtOrDefault(0);
+                string GitHubDirectory = "GitHub: " + File.ReadLines(HistoryDirectory + "\\" + HistoryListBox.SelectedItem + ".txt")
+                    .ElementAtOrDefault(1);
+                string TotalTime()
+                {
+                    string TimeTaken = File.ReadLines(HistoryDirectory + "\\" + HistoryListBox.SelectedItem + ".txt")
+                        .ElementAtOrDefault(2);
+                    Double ToSeconds = Int32.Parse(TimeTaken) / 1000d;
+                    Double ToMinutes = ToSeconds / 60;
+                    Double ToHours = ToMinutes / 60;
+                    string Return = "";
+                    if (ToSeconds < 60)
+                    {
+                        Return = ToSeconds.ToString("0.00") + " Seconds to upload";
+                    }
+                    else if (ToSeconds > 59 && ToMinutes < 60)
+                    {
+                        Return = ToMinutes.ToString("0.00") + " Minutes to upload";
+                    }
+                    else if (ToMinutes > 59)
+                    {
+                        Return = ToHours.ToString("0.00") + " Hours to upload";
+                    }
+
+                    return Return;
+                }
+
+                string TotalTimeToUpload = TotalTime();
+                string TimeOfDay = "Time Uploaded " + File.ReadLines(HistoryDirectory + "\\" + HistoryListBox.SelectedItem + ".txt")
+                    .ElementAtOrDefault(3);
+                DisplayHistoryTextBox.Text = SourceDirectory + "\n" + GitHubDirectory + "\n" + TotalTimeToUpload + "\n" + TimeOfDay;
+            }
         }
 
         private string User = System.Environment.GetEnvironmentVariable("USERPROFILE");
@@ -133,14 +175,16 @@ namespace GitHub_Large_Uploader
                             }
                             else
                             {
+                                StatusLabel.Text = "Installing Git...";
                                 progressBar1.Value = 0;
                                 progressBar1.Style = ProgressBarStyle.Marquee;
                                 await Task.Factory.StartNew(() =>
                                 {
-                                    Process.Start(Environment.GetEnvironmentVariable("TEMP") + "\\Git.exe")
+                                    Process.Start(Environment.GetEnvironmentVariable("TEMP") + "\\Git.exe","/SILENT")
                                         .WaitForExit();
                                 });
                                 progressBar1.Style = ProgressBarStyle.Blocks;
+                                StatusLabel.Text = "Waiting for input...";
                                 MessageBox.Show("Please restart your computer");
                             }
                         };
@@ -148,11 +192,21 @@ namespace GitHub_Large_Uploader
                     }
                 }
             }
+
+            if (NumberOfFilesToUploadTextBox.Text == "")
+            {
+                NumberOfFilesToUploadTextBox.Text = "1";
+            }
             await StartUploadGitHub();
         }
-
+        Stopwatch ElapsedUploadTime = new Stopwatch();
         private async Task StartUploadGitHub()
         {
+            string HistoryDirectory = Environment.GetEnvironmentVariable("APPDATA") + "\\UploadHistory";
+            if (!Directory.Exists(HistoryDirectory))
+            {
+                Directory.CreateDirectory(HistoryDirectory);
+            }
             if (Convert.ToBoolean(textBox1.Text == "") != Convert.ToBoolean(textBox2.Text == ""))
             {
                 MessageBox.Show("Please select the source directory and the github directory.");
@@ -193,6 +247,10 @@ namespace GitHub_Large_Uploader
                         TotalSize = TotalSize + Int32.Parse(d.Length.ToString());
                     }
 
+                    StatusLabel.Text = "Refreshing Repository..";
+                    await RunCommandHidden("cd \"" + textBox1.Text + "\"\ngit pull origin");
+                    StatusLabel.Text = "";
+
                     string TotalSizeCalculate()
                     {
                         string Return = "";
@@ -209,6 +267,7 @@ namespace GitHub_Large_Uploader
                         return Return;
                     }
                     SizeToUploadLabel.Text = "Total Size of files to upload:\n" + TotalSizeCalculate();
+                    ElapsedUploadTime.Start();
                     foreach (var file in Source.GetFiles())
                     {
                         ForceNextButton.Enabled = true;
@@ -476,6 +535,32 @@ namespace GitHub_Large_Uploader
                             }
                         }
                     }
+                    ElapsedUploadTime.Stop();
+                    bool Saved = false;
+                    if (File.Exists(HistoryDirectory + "\\" + DateTime.Now.Month + "-" + DateTime.Now.Date + "-" +
+                                    DateTime.Now.Year + "-"))
+                    {
+                        var N = 0;
+                        while (Saved == false)
+                        {
+                            if (File.Exists(HistoryDirectory + "\\" + DateTime.Now.Month + "-" + DateTime.Now.Date +
+                                            "-" +
+                                            DateTime.Now.Year + "-" + N))
+                            {
+                                N++;
+                            }
+                            else
+                            {
+                                File.Move(
+                                    HistoryDirectory + "\\" + DateTime.Now.Month + "-" + DateTime.Now.Date + "-" +
+                                    DateTime.Now.Year + "-",
+                                    HistoryDirectory + "\\" + DateTime.Now.Month + "-" + DateTime.Now.Date + "-" +
+                                    DateTime.Now.Year + "-" + N);
+                                Saved = true;
+                            }
+                        }
+                    }
+                    File.WriteAllText(HistoryDirectory + "\\" + DateTime.Now.Month + "-" + DateTime.Now.Date + "-" + DateTime.Now.Year + "-",textBox1.Text + "\n" + textBox2.Text + "\n" + ElapsedUploadTime.ElapsedMilliseconds + "\n" + DateTime.Now.Hour + ":" + DateTime.Now.Minute);
                     /// DOUBLE CHECK ///
                     StatusLabel.Text = "Double Checking...";
                     progressBar1.Value = 0;
@@ -818,6 +903,87 @@ namespace GitHub_Large_Uploader
         private void ContinueButton_Click(object sender, EventArgs e)
         {
             ContinueButtonPressed = true;
+        }
+
+        private void NumberOfFilesToUploadTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Int32.Parse(NumberOfFilesToUploadTextBox.Text) > 30)
+                {
+                    NumberOfFilesToUploadTextBox.Text = "30";
+                }
+            }
+            catch
+            {
+                if (NumberOfFilesToUploadTextBox.Text == "")
+                {
+
+                }
+                else
+                {
+                    NumberOfFilesToUploadTextBox.Text = "1";
+                }
+            }
+        }
+
+        private void AlwaysOnTopCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (AlwaysOnTopCheckBox.Checked == true)
+            {
+                TopMost = true;
+            }
+            else
+            {
+                TopMost = false;
+            }
+        }
+
+        private void UIColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog d = new ColorDialog();
+            d.ShowDialog();
+            BackColor = d.Color;
+            File.WriteAllText(Environment.GetEnvironmentVariable("APPDATA") + "\\GitHubUploaderBackground.txt",
+                d.Color.ToString());
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RefreshHistoryButton_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string HistoryDirectory = Environment.GetEnvironmentVariable("APPDATA") + "\\UploadHistory";
+            HistoryListBox.Items.Clear();
+            if (Directory.Exists(HistoryDirectory))
+            {
+                DirectoryInfo d = new DirectoryInfo(HistoryDirectory);
+                foreach (var fileInfo in d.GetFiles())
+                {
+                    string Name = fileInfo.ToString();
+                    Name = Name.Replace(".txt", "");
+                    HistoryListBox.Items.Add(Name);
+                }
+            }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string HistoryDirectory = Environment.GetEnvironmentVariable("APPDATA") + "\\UploadHistory";
+            SaveFileDialog d = new SaveFileDialog();
+            d.Title = "Select a place to save";
+            d.DefaultExt = "zip";
+            d.ShowDialog();
+            try
+            {
+                ZipFile.CreateFromDirectory(HistoryDirectory,d.FileName);
+            }
+            catch (Exception exception)
+            {
+                
+            }
         }
     }
 }
