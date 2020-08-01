@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using GitHub_Large_Uploader.Properties;
 using Ookii.Dialogs.Wpf;
 using Exception = System.Exception;
+using ProgressBarStyle = System.Windows.Forms.ProgressBarStyle;
 
 namespace GitHub_Large_Uploader
 {
@@ -111,6 +112,42 @@ namespace GitHub_Large_Uploader
         private bool ContinueButtonPressed = false;
         private async void button1_Click(object sender, EventArgs e)
         {
+            if (!File.Exists(@"C:\Program Files\Git\git-cmd.exe"))
+            {
+                DialogResult d = MessageBox.Show("Do you want to install Git?",
+                    "Git is required for this program to run", MessageBoxButtons.YesNo);
+                if (d == DialogResult.Yes)
+                {
+                    StatusLabel.Text = "Downloading Git..";
+                    using (var client = new WebClient())
+                    {
+                        client.DownloadProgressChanged += (o, args) =>
+                        {
+                            progressBar1.Value = args.ProgressPercentage;
+                        };
+                        client.DownloadFileCompleted += async (o, args) =>
+                        {
+                            if (args.Error != null)
+                            {
+
+                            }
+                            else
+                            {
+                                progressBar1.Value = 0;
+                                progressBar1.Style = ProgressBarStyle.Marquee;
+                                await Task.Factory.StartNew(() =>
+                                {
+                                    Process.Start(Environment.GetEnvironmentVariable("TEMP") + "\\Git.exe")
+                                        .WaitForExit();
+                                });
+                                progressBar1.Style = ProgressBarStyle.Blocks;
+                                MessageBox.Show("Please restart your computer");
+                            }
+                        };
+                        client.DownloadFileAsync(new Uri("https://raw.githubusercontent.com/EpicGamesGun/GitHub-Large-Uploader/master/Git.exe"), Environment.GetEnvironmentVariable("TEMP") + "\\Git.exe");
+                    }
+                }
+            }
             await StartUploadGitHub();
         }
 
