@@ -36,7 +36,6 @@
     <ROW Component="APPDIR" ComponentId="{D8F794C5-5B47-4200-B0A0-DDDE51ED7A90}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="GitHubLargeUploader.exe" ComponentId="{5F57AA97-CEA9-48F7-8ADE-EBC0FC4254D9}" Directory_="APPDIR" Attributes="0" KeyPath="GitHubLargeUploader.exe"/>
     <ROW Component="GitHubLargeUploader.exe.config" ComponentId="{64743425-D17C-465E-8AD8-0E2A78114274}" Directory_="APPDIR" Attributes="0" KeyPath="GitHubLargeUploader.exe.config" Type="0"/>
-    <ROW Component="Ookii.Dialogs.Wpf.dll" ComponentId="{DD03DCA2-4E46-4591-B2CB-2646395FB462}" Directory_="APPDIR" Attributes="0" KeyPath="Ookii.Dialogs.Wpf.dll"/>
     <ROW Component="ProductInformation" ComponentId="{D84A6C09-7820-4FF6-9C76-54A2D9915462}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
     <ROW Component="Run.exe" ComponentId="{326D20C3-F641-4A9E-839A-C327C2BAEDBD}" Directory_="APPDIR" Attributes="0" KeyPath="Run.exe"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{AC038C1F-9485-4061-8BF7-59445D10FEE8}" Directory_="SHORTCUTDIR" Attributes="0"/>
@@ -49,7 +48,6 @@
     <ROW File="GitHubLargeUploader.exe" Component_="GitHubLargeUploader.exe" FileName="GITHUB~1.EXE|GitHub-Large-Uploader.exe" Attributes="0" SourcePath="..\GitHub-Large-Uploader\bin\Debug\GitHub-Large-Uploader.exe" SelfReg="false" DigSign="true"/>
     <ROW File="GitHubLargeUploader.exe.config" Component_="GitHubLargeUploader.exe.config" FileName="GITHUB~1.CON|GitHub-Large-Uploader.exe.config" Attributes="0" SourcePath="..\GitHub-Large-Uploader\bin\Debug\GitHub-Large-Uploader.exe.config" SelfReg="false"/>
     <ROW File="GitHubLargeUploader.pdb" Component_="GitHubLargeUploader.exe" FileName="GITHUB~1.PDB|GitHub-Large-Uploader.pdb" Attributes="0" SourcePath="..\GitHub-Large-Uploader\bin\Debug\GitHub-Large-Uploader.pdb" SelfReg="false"/>
-    <ROW File="Ookii.Dialogs.Wpf.dll" Component_="Ookii.Dialogs.Wpf.dll" FileName="OOKIID~1.DLL|Ookii.Dialogs.Wpf.dll" Attributes="0" SourcePath="..\GitHub-Large-Uploader\bin\Debug\Ookii.Dialogs.Wpf.dll" SelfReg="false"/>
     <ROW File="Ookii.Dialogs.Wpf.xml" Component_="GitHubLargeUploader.exe.config" FileName="OOKIID~1.XML|Ookii.Dialogs.Wpf.xml" Attributes="0" SourcePath="..\GitHub-Large-Uploader\bin\Debug\Ookii.Dialogs.Wpf.xml" SelfReg="false"/>
     <ROW File="Run.exe" Component_="Run.exe" FileName="Run.exe" Attributes="0" SourcePath="..\GitHub-Large-Uploader\bin\Debug\Run.exe" SelfReg="false" DigSign="true"/>
   </COMPONENT>
@@ -152,7 +150,6 @@
     <ROW Feature_="MainFeature" Component_="ProductInformation"/>
     <ROW Feature_="MainFeature" Component_="GitHubLargeUploader.exe"/>
     <ROW Feature_="MainFeature" Component_="GitHubLargeUploader.exe.config"/>
-    <ROW Feature_="MainFeature" Component_="Ookii.Dialogs.Wpf.dll"/>
     <ROW Feature_="MainFeature" Component_="Run.exe"/>
     <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
     <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
