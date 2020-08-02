@@ -38,7 +38,7 @@ C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader
 C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\bin\Debug\GitHub-Large-Uploader.exe.config
 C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\bin\Debug\GitHub-Large-Uploader.exe
 C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\bin\Debug\GitHub-Large-Uploader.pdb
-C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\bin\Debug\Ookii.Dialogs.Wpf.dll
 C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\bin\Debug\Ookii.Dialogs.Wpf.xml
 C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub-Large-Uploader.csproj.CopyComplete
 C:\Users\cntow\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub-Large-Uploader.csproj.Fody.CopyLocal.cache
+C:\Users\CNTowerGUN\Documents\GitHub\GitHub-Large-Uploader\GitHub-Large-Uploader\obj\Debug\GitHub-Large-Uploader.csproj.Fody.CopyLocal.cache
