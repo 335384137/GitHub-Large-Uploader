@@ -200,6 +200,68 @@ namespace GitHub_Large_Uploader
             await StartUploadGitHub();
         }
         Stopwatch ElapsedUploadTime = new Stopwatch();
+        string CommitMessage = "dew";
+
+        private async Task ChangeCommitMessage()
+        {
+            if (CommitMessageTextBox.Text == "")
+            {
+                Random d = new Random();
+                int MessageCount = d.Next(0, 10);
+                if (MessageCount == 0)
+                {
+                    CommitMessage = "Initial Commit";
+                }
+                else if (MessageCount == 1)
+                {
+                    CommitMessage = "few changes";
+                }
+                else if (MessageCount == 2)
+                {
+                    CommitMessage = "commiting some changes";
+                }
+                else if (MessageCount == 3)
+                {
+                    CommitMessage = "pushing a few code";
+                }
+                else if (MessageCount == 4)
+                {
+                    CommitMessage = "updating database";
+                }
+                else if (MessageCount == 5)
+                {
+                    CommitMessage = "changing some code, and updating";
+                }
+                else if (MessageCount == 6)
+                {
+                    CommitMessage = "changed lot of code";
+                }
+                else if (MessageCount == 7)
+                {
+                    CommitMessage = "adding a file";
+                }
+                else if (MessageCount == 8)
+                {
+                    CommitMessage = "making some big changes to the repository";
+                }
+                else if (MessageCount == 9)
+                {
+                    CommitMessage = "adding few code to my project";
+                }
+                else if (MessageCount == 10)
+                {
+                    CommitMessage = "cleaning up code";
+                }
+                else
+                {
+                    CommitMessage = "dew";
+                }
+            }
+            else
+            {
+                CommitMessage = CommitMessageTextBox.Text;
+            }
+        }
         private async Task StartUploadGitHub()
         {
             try
@@ -288,7 +350,7 @@ namespace GitHub_Large_Uploader
                                     try
                                     {
                                         await RunCommandHidden("cd /d \"" + GitDirectory +
-                                                               "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                                                               "\" \n git add --all \n git commit -m \"" + CommitMessage + "\" \n git push origin");
                                     }
                                     catch
                                     {
@@ -301,13 +363,15 @@ namespace GitHub_Large_Uploader
                                     {
 
                                         await RunCommand("cd /d \"" + GitDirectory +
-                                                         "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                                                         "\" \n git add --all \n git commit -m \"" + CommitMessage + "\" \n git push origin");
                                     }
                                     catch
                                     {
 
                                     }
                                 }
+
+                                await ChangeCommitMessage();
 
                                 stopwatch.Stop();
                                 try
@@ -601,7 +665,7 @@ namespace GitHub_Large_Uploader
                                     try
                                     {
                                         await RunCommandHidden("cd /d \"" + GitDirectory +
-                                                               "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                                                               "\" \n git add --all \n git commit -m \"" + CommitMessage + "\" \n git push origin");
                                     }
                                     catch
                                     {
@@ -614,13 +678,15 @@ namespace GitHub_Large_Uploader
                                     {
 
                                         await RunCommand("cd /d \"" + GitDirectory +
-                                                         "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                                                         "\" \n git add --all \n git commit -m \"" + CommitMessage + "\" \n git push origin");
                                     }
                                     catch
                                     {
 
                                     }
                                 }
+
+                                await ChangeCommitMessage();
                                 CountRemaining.Stop();
                                 Double ToSeconds = CountRemaining.ElapsedMilliseconds / 1000d;
                                 Double RemainingSeconds = ToSeconds * (progressBar1.Maximum - progressBar1.Value);
@@ -718,12 +784,14 @@ namespace GitHub_Large_Uploader
                         StatusLabel.Text = "Double Checking...";
                         progressBar1.Value = 0;
                         EstimatedLabel.Text = "";
+
+                        
                         if (ShowCommandCheckBox.Checked == false)
                         {
                             try
                             {
                                 await RunCommandHidden("cd /d \"" + GitDirectory +
-                                                       "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                                                       "\" \n git add --all \n git commit -m \"" + CommitMessage + "\" \n git push origin");
                             }
                             catch
                             {
@@ -736,13 +804,15 @@ namespace GitHub_Large_Uploader
                             {
 
                                 await RunCommand("cd /d \"" + GitDirectory +
-                                                 "\" \n git add --all \n git commit -m \"dew\" \n git push origin");
+                                                 "\" \n git add --all \n git commit -m \"" + CommitMessage + "\" \n git push origin");
                             }
                             catch
                             {
 
                             }
                         }
+
+                        await ChangeCommitMessage();
                         /// END OF DOUBLE CHECK ///
 
                         if (File.Exists(UploadQueue))
