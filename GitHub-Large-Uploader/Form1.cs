@@ -655,6 +655,9 @@ namespace GitHub_Large_Uploader
                                 {
 
                                 }
+
+                                StatusLabel.Text = "Checking for internet...";
+                                await CheckInternet();
                             }
                             catch
                             {
@@ -880,6 +883,40 @@ namespace GitHub_Large_Uploader
                 Console.WriteLine("ERROR LINE => " + line);
                 throw;
             }
+        }
+
+        private async Task CheckInternet()
+        {
+            bool Internet = false;
+            string StringDownload = String.Empty;
+            while (Internet == false)
+            {
+                await Task.Factory.StartNew(() =>
+                {
+                    using (var client = new WebClient())
+                    {
+                        try
+                        {
+                            StringDownload = client.DownloadString(new Uri(
+                                "https://raw.githubusercontent.com/EpicGamesGun/StarterPackages/master/InternetCheck.txt"));
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                });
+
+
+                if (StringDownload == "true")
+                {
+                    Internet = true;
+                }
+
+                await Task.Delay(1000);
+            }
+
+            Internet = false;
         }
 
         private string UploadQueue = Environment.GetEnvironmentVariable("TEMP") + "\\UploadQueue.txt";
