@@ -321,13 +321,14 @@ namespace GitHub_Large_Uploader
                         {
                             string Return = "";
                             Double Calculated = (TotalSize / 1024d / 1024d);
+                            Double CalculatedGB = (TotalSize / 1024d / 1024d / 1024d);
                             if (Calculated < 1024)
                             {
                                 Return = Calculated + " MB";
                             }
-                            else
+                            else if (Calculated > 1023)
                             {
-                                Return = (Calculated / 1024d).ToString("0.00") + " GB";
+                                Return = CalculatedGB.ToString("0.00") + " GB";
                             }
 
                             return Return;
