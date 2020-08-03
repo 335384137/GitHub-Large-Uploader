@@ -8,10 +8,10 @@
     <ROW Property="ARPNOREPAIR" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="Software Store"/>
-    <ROW Property="ProductCode" Value="1033:{DE06C613-75FC-4F40-8C27-B9CB07C1ABFA} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{55876070-74F4-4030-BB40-37E4CE8EFB55} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="GitHub-Large-Uploader"/>
-    <ROW Property="ProductVersion" Value="1.0.1" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.0.2" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{7F9A494F-979F-4BB3-99DA-767227D0CCFC}"/>
