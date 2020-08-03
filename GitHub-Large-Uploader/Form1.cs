@@ -672,40 +672,40 @@ namespace GitHub_Large_Uploader
                         bool Saved = false;
                         try
                         {
-                            if (File.Exists(HistoryDirectory + "\\" + DateTime.Now.Month + "-" + DateTime.Now.Date +
+                            if (File.Exists(HistoryDirectory + "\\" + DateTime.Now.Month.ToString().Replace("/", "") + "-" + DateTime.Now.Date.ToString().Replace("/", "") +
                                             "-" +
-                                            DateTime.Now.Year + ".txt"))
+                                            DateTime.Now.Year.ToString().Replace("/", "") + ".txt"))
                             {
                                 var N = 0;
                                 while (Saved == false)
                                 {
-                                    if (File.Exists(HistoryDirectory + "\\" + DateTime.Now.Month + "-" +
-                                                    DateTime.Now.Date +
+                                    if (File.Exists(HistoryDirectory + "\\" + DateTime.Now.Month.ToString().Replace("/", "") + "-" +
+                                                    DateTime.Now.Date.ToString().Replace("/", "") +
                                                     "-" +
-                                                    DateTime.Now.Year + "-" + N + ".txt"))
+                                                    DateTime.Now.Year.ToString().Replace("/", "") + "-" + N + ".txt"))
                                     {
                                         N++;
                                     }
                                     else
                                     {
                                         File.Move(
-                                            HistoryDirectory + "\\" + DateTime.Now.Month + "-" + DateTime.Now.Date +
+                                            HistoryDirectory + "\\" + DateTime.Now.Month.ToString().Replace("/","") + "-" + DateTime.Now.Date.ToString().Replace("/", "") +
                                             "-" +
-                                            DateTime.Now.Year + ".txt",
-                                            HistoryDirectory + "\\" + DateTime.Now.Month + "-" + DateTime.Now.Date +
+                                            DateTime.Now.Year.ToString().Replace("/", "") + ".txt",
+                                            HistoryDirectory + "\\" + DateTime.Now.Month.ToString().Replace("/", "") + "-" + DateTime.Now.Date.ToString().Replace("/", "") +
                                             "-" +
-                                            DateTime.Now.Year + "-" + N + ".txt");
+                                            DateTime.Now.Year.ToString().Replace("/", "") + "-" + N + ".txt");
                                         Saved = true;
                                     }
                                 }
                             }
 
                             File.WriteAllText(
-                                HistoryDirectory + "\\" + DateTime.Now.Month + "-" + DateTime.Now.Date + "-" +
-                                DateTime.Now.Year + ".txt",
+                                HistoryDirectory + "\\" + DateTime.Now.Month.ToString().Replace("/","") + "-" + DateTime.Now.Date.ToString().Replace("/","") + "-" +
+                                DateTime.Now.Year.ToString().Replace("/","") + ".txt",
                                 textBox1.Text + "\n" + textBox2.Text + "\n" + ElapsedUploadTime.ElapsedMilliseconds +
                                 "\n" +
-                                DateTime.Now.Hour + ":" + DateTime.Now.Minute);
+                                DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString());
                         }
                         catch (Exception d)
                         {
