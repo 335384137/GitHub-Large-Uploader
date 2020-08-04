@@ -405,11 +405,20 @@ namespace GitHub_Large_Uploader
                                         {
                                             NumberOfFilesToUploadTextBox.Text = "10";
                                         }
-                                        else if (ToSeconds > 60 && ToSeconds < 120)
+                                        else if (ToSeconds > 29 && ToSeconds < 60)
+                                        {
+                                            NumberOfFilesToUploadTextBox.Text = "7";
+                                        }
+
+                                        else if (ToSeconds > 59 && ToSeconds < 120)
                                         {
                                             NumberOfFilesToUploadTextBox.Text = "5";
                                         }
-                                        else if (ToSeconds > 120 && ToSeconds < 200)
+                                        else if (ToSeconds > 119 && ToSeconds < 180)
+                                        {
+                                            NumberOfFilesToUploadTextBox.Text = "3";
+                                        }
+                                        else if (ToSeconds > 179 && ToSeconds < 200)
                                         {
                                             NumberOfFilesToUploadTextBox.Text = "2";
                                         }
