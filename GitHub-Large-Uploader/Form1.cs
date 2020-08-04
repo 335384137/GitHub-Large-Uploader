@@ -314,7 +314,7 @@ namespace GitHub_Large_Uploader
                         }
 
                         StatusLabel.Text = "Refreshing Repository..";
-                        await RunCommandHidden("cd \"" + textBox1.Text + "\"\ngit pull origin");
+                        await RunCommandHidden("cd /d \"" + textBox1.Text + "\"\ngit pull origin");
                         StatusLabel.Text = "";
 
                         string TotalSizeCalculate()
