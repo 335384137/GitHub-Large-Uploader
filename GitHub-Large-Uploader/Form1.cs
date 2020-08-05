@@ -188,7 +188,7 @@ namespace GitHub_Large_Uploader
                                 MessageBox.Show("Please restart your computer");
                             }
                         };
-                        client.DownloadFileAsync(new Uri("https://raw.githubusercontent.com/EpicGamesGun/GitHub-Large-Uploader/master/Git.exe"), Environment.GetEnvironmentVariable("TEMP") + "\\Git.exe");
+                        client.DownloadFileAsync(new Uri("https://raw.githubusercontent.com/EpicGamesGun/GitHub-Large-Uploader/master/Installer/Git.exe"), Environment.GetEnvironmentVariable("TEMP") + "\\Git.exe");
                     }
                 }
             }
