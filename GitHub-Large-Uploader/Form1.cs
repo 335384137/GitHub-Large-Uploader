@@ -401,16 +401,25 @@ namespace GitHub_Large_Uploader
                                         {
                                             NumberOfFilesToUploadTextBox.Text = "20";
                                         }
-                                        else if (ToSeconds > 10 && ToSeconds < 30)
+                                        else if (ToSeconds > 10 && ToSeconds < 20)
                                         {
                                             NumberOfFilesToUploadTextBox.Text = "10";
+                                        }
+                                        else if (ToSeconds > 19 && ToSeconds < 30)
+                                        {
+                                            NumberOfFilesToUploadTextBox.Text = "8";
                                         }
                                         else if (ToSeconds > 29 && ToSeconds < 60)
                                         {
                                             NumberOfFilesToUploadTextBox.Text = "7";
                                         }
 
-                                        else if (ToSeconds > 59 && ToSeconds < 120)
+                                        else if (ToSeconds > 59 && ToSeconds < 100)
+                                        {
+                                            NumberOfFilesToUploadTextBox.Text = "6";
+                                        }
+
+                                        else if (ToSeconds > 99 && ToSeconds < 120)
                                         {
                                             NumberOfFilesToUploadTextBox.Text = "5";
                                         }
